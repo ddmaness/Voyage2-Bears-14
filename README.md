@@ -1,5 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
-
 # Bears-Team-14's Team Project --> Courtesy of Chingu Voyage 2
 
 Welcome to our project. We're a team of a few folks trying to build something of great relative import. This site build, while on the surface but a simple reverse-engineering and re-imagining of the Jobbatical website, is much more to us. We are using it to establish/enhance/exhibit our litany of web dev talents both to bolster our burgeoning career pursuits and improve the lives of our compatriots in the same boat. What does that actually mean you ask? Stick around to find out, big stuff in the pipeline!
