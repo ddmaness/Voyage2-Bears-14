@@ -26,9 +26,7 @@ From here, things could get messy (this will be a very active repo dev-wise for 
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+**TBC**
 
 ## Authors
 
