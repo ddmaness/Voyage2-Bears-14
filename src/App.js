@@ -1,12 +1,30 @@
 import React, { Component } from 'react';
-import Postpage from './components/Postpage';
+
+import Navbar from './navbar';
+import SearchProjects from './search-projects';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Postpage />  
-      </div>
+      <div>
+            <nav id = 'nav'>
+                <Navbar />
+            </nav>
+            
+            <header>
+                <h1>Chingu Hackathon</h1>
+            </header>
+
+            <section>
+                <SearchProjects/>
+            </section>
+
+            <section id ='featured-projects'>
+                <h3>Featured Projects</h3>
+                {/* TODO component for displaying featured projects will go here. This will display info on some number of projects
+                    based on criteria that is as of yet undetermined*/}
+            </section>
+        </div>
     );
   }
 }
