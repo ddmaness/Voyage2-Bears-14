@@ -5,7 +5,7 @@ export default class Postpage extends Component{
 constructor(props){
     super(props);
     this.state={
-      postedProjects:['example1','example2','example3','example3','example4','example5','example6']
+      postedProjects:['example1','example2','example3','example4','example5','example6']
     }
   }
 
