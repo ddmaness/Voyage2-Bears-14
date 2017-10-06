@@ -1,0 +1,110 @@
+body{
+  min-width: 380px;
+}
+#postpage{
+  height:100%;
+  background: #fafafa;
+}
+#explore-projects{
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 40px;
+  font-size: 3em;
+  color:#080808;
+}
+.input-form{
+  margin-bottom: 50px;
+}
+.input-group{
+  margin:0 auto;
+}
+.form-control{
+  height:60px;
+  padding:20px;
+  font-size:18px;
+}
+.form-control::-webkit-input-placeholder{
+  font-size:18px;
+}
+.search-button{
+  height:60px;
+  min-width: 150px;
+  background: #04d092;
+  font-weight: 700;
+  border-color: #04d092;
+  text-transform: uppercase;
+}
+.row{
+  margin:0 auto;
+}
+.post-project{
+  overflow: hidden;
+  padding:0;
+  height: 525px;
+  cursor: pointer;
+}
+img{
+  width:350px;
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+}
+.list-card{
+  padding:0 20px 20px 20px;
+  background: #fff;
+  border:1px solid #eee;
+  border-radius: 0 0 10px 10px;
+  max-width: 350px;
+  height: 209px;
+  margin:0 auto;
+}
+.expectation-date{
+  color:#26b999;
+  font-weight:700;
+}
+.expectation-date-to-apply{
+  max-width: 22ch;
+  display: inline-block;
+  text-transform: uppercase;
+  float:left;
+}
+.pull-right{
+  color:#9b9b9b;
+}
+.pull-right:hover{
+  color:#080808;
+}
+.pull-right:hover i{
+  color:#26b999;
+}
+.list-description-div{
+  overflow: hidden;
+    width:310px;
+    height: 4.3em;
+    position:relative;
+    font-weight: 500;
+    text-align: left;
+}
+.list-description-div:after{
+  position: absolute;
+    display: block;
+    content: "...";
+    bottom: 0;
+    right: 15%;
+}
+
+.project-listing-card{
+  text-align: center;
+}
+
+@media screen and (max-width: 765px) {
+    .input-group{
+      display:block;
+    }
+    .search-button{
+      width: 100%;
+      border-radius: 5px !important;
+    }
+    .form-control{
+      border-radius: 5px !important;
+    }
+}

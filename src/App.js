@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import Navbar from './navbar';
 import SearchProjects from './search-projects';
 
