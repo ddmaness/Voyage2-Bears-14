@@ -1,32 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+import Homepage from './homepage'
 
-import Navbar from './navbar';
-import SearchProjects from './search-projects';
+const App = () => (
+  <Router>
+    <div>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/explore-projects">Explore Projects</Link></li>
+        <li><Link to="/sign-up">Sign Up</Link></li>
+        <li><Link to="/login">Login Up</Link></li>
+      </ul>
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-            <nav id = 'nav'>
-                <Navbar />
-            </nav>
-            
-            <header>
-                <h1>Chingu Hackathon</h1>
-            </header>
+      <hr/>
 
-            <section>
-                <SearchProjects/>
-            </section>
-
-            <section id ='featured-projects'>
-                <h3>Featured Projects</h3>
-                {/* TODO component for displaying featured projects will go here. This will display info on some number of projects
-                    based on criteria that is as of yet undetermined*/}
-            </section>
-        </div>
-    );
-  }
-}
+      <Route exact path="/" component={Homepage}/>
+      {/* React Component path may be placed here once completed
+      <Route path="/explore-projects" component = {TODO}/>
+      <Route path="/sign-up" component={TODO}/>
+      <Route path="/login" component={TODO}/>
+      */}
+    </div>
+  </Router>
+)
 
 export default App;
