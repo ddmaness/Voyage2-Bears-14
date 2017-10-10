@@ -1,14 +1,22 @@
-import React, {Component} from 'react';
+import React from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 
-class SearchProjects extends Component {
-    render() {
-        //TODO button will lead to component for displaying and searching projects
-        return (
-            <div>
-                <button>Search Projects</button>
-            </div>
-        );
-    }
-}
+const SearchProjects = () => (
+  <Router>
+    <div>
+      <button><Link to="/">Explore Projects</Link></button>
+    
+    <hr/>
+
+      {/* React Component path may be placed here once completed
+      <Route path="/explore-projects" component = {TODO}/>
+      */}
+    </div>
+  </Router>
+)
 
 export default SearchProjects;
