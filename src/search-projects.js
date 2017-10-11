@@ -1,22 +1,13 @@
-import React from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
+import React from 'react';
 
 const SearchProjects = () => (
-  <Router>
     <div>
-      <button><Link to="/">Explore Projects</Link></button>
-    
+
+      <button onClick={()=>this.props.history.push('/explore-projects')}>Explore projects</button>
+
     <hr/>
 
-      {/* React Component path may be placed here once completed
-      <Route path="/explore-projects" component = {TODO}/>
-      */}
     </div>
-  </Router>
 )
 
 export default SearchProjects;
