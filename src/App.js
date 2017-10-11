@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import Postpage from './components/Postpage';
+import Projectpage from './components/Projectpage';
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  Switch
 } from 'react-router-dom'
 import Homepage from './homepage'
 
@@ -17,13 +20,15 @@ const App = () => (
       </ul>
 
       <hr/>
-
-      <Route exact path="/" component={Homepage}/>
-      {/* React Component path may be placed here once completed
-      <Route path="/explore-projects" component = {TODO}/>
-      <Route path="/sign-up" component={TODO}/>
-      <Route path="/login" component={TODO}/>
-      */}
+      <Switch>
+        <Route exact={true} path='/' render={(props)=><Homepage {...props} />} />
+        <Route path='/explore-projects' render={(props)=><Postpage {...props}/>}/>
+        <Route path='/project-page/:id' render={(props)=><Projectpage {...props}/>}/>
+        {/* React Component path may be placed here once completed
+        <Route path="/sign-up" component={TODO}/>
+        <Route path="/login" component={TODO}/>
+        */}
+      </Switch>
     </div>
   </Router>
 )

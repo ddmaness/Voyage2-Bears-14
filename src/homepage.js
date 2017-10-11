@@ -4,13 +4,13 @@ import SearchProjects from './search-projects';
 class Homepage extends Component {
   render() {
     return (
-      <div> 
+      <div>
         <header>
             <h1>Chingu Hackathon</h1>
         </header>
 
         <section>
-            <SearchProjects/>
+            <SearchProjects history={this.props.history}/>
         </section>
 
         <section id ='featured-projects'>
