@@ -1,33 +1,24 @@
 import React from 'react';
-import ProjectPage from './ProjectPage/ProjectPage';
-import ProjectListPage from './ProjectListPage/ProjectListPage';
+import ProjectPage from './project-page/ProjectPage';
+import ProjectListPage from './project-list-page/ProjectListPage';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   Switch
-} from 'react-router-dom'
-import HomePage from './HomePage/HomePage'
+} from 'react-router-dom';
+
+import HomePage from './home-page/HomePage';
+import Header from './shared/header/Header';
 
 const App = () => (
   <Router>
     <div>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/projects">Explore Projects</Link></li>
-        <li><Link to="/sign-up">Sign Up</Link></li>
-        <li><Link to="/login">Login Up</Link></li>
-      </ul>
+      <Header username='Placeholder' />
 
-      <hr/>
       <Switch>
-        <Route exact={true} path='/' render={(props)=><HomePage {...props} />} />
+        <Route exact path='/' render={(props)=><HomePage {...props} />} />
         <Route path='/projects' render={(props)=><ProjectListPage {...props}/>}/>
         <Route path='/projects/:id' render={(props)=><ProjectPage {...props}/>}/>
-        {/* React Component path may be placed here once completed
-        <Route path="/sign-up" component={TODO}/>
-        <Route path="/login" component={TODO}/>
-        */}
       </Switch>
     </div>
   </Router>

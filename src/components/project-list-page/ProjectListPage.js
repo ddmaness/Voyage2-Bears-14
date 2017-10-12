@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ProjectListPage.css';
-import ProjectCard from '../ProjectCard/ProjectCard'
+import ProjectCard from '../project-card/ProjectCard'
 
 export default class ProjectsListPage extends Component{
 constructor(props){

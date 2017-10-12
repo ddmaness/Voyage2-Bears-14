@@ -12,7 +12,7 @@ const userSchema = new Schema({
  username: {type: String, required: true, unique: true, trim: true},
  email: {type: String, unique: true, trim: true},
  password: {type: String, required: true},
- background: Number,
+ background: String,
  skills: [String],
  languages: [String],
  isAdmin: {type: Boolean, default: false},
