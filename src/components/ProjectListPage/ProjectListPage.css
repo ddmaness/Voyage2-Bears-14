@@ -65,7 +65,7 @@ img{
   max-width: 22ch;
   display: inline-block;
   text-transform: uppercase;
-  float:left;
+  float: left;
 }
 .pull-right{
   color:#9b9b9b;

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './Postpage.css';
-import PostpageProject from './Postpage-project'
+import './ProjectListPage.css';
+import ProjectCard from '../ProjectCard/ProjectCard'
 
-export default class Postpage extends Component{
+export default class ProjectsListPage extends Component{
 constructor(props){
     super(props);
     this.state={
@@ -13,13 +13,13 @@ constructor(props){
 render(){
   const pages=this.state.postedProjects.map((project,i)=>{
         return(
-          <PostpageProject key={i} id={i} history={this.props.history}/>
+          <ProjectCard key={i} id={i} history={this.props.history}/>
       )
   })
     return(
       <section id="postpage">
-      <div  className="container">
-        <h1 id='explore-projects'>Explore Projects</h1>
+        <div  className="container">
+          <h1 id='explore-projects'>Explore Projects</h1>
           <form className="input-form">
             <div className="list-search">
               <div className="col-lg-6 col-md-6 col-sm-8 col-xs-10 input-group">

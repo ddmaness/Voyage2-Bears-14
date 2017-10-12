@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import SearchProjects from './search-projects';
+import SearchProjects from '../SearchProjects/SearchProjects';
 
-class Homepage extends Component {
+class HomePage extends Component {
   render() {
     return (
       <div>
@@ -23,4 +23,4 @@ class Homepage extends Component {
   }
 }
 
-export default Homepage;
+export default HomePage;
