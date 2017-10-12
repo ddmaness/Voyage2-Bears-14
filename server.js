@@ -193,7 +193,7 @@ router.route('/users')
         });
     });
 
-//set router to respond to /api requests
+//set router to respond to and route to requests only with /api, react router should handle others
 app.use('/api', router);
 
 //configure Passport authentication

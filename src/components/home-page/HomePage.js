@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import SearchProjects from '../SearchProjects/SearchProjects';
+import SearchProjects from '../search-projects/SearchProjects';
 
 class HomePage extends Component {
   render() {
     return (
       <div>
-        <header>
-            <h1>Chingu Hackathon</h1>
-        </header>
-
         <section>
             <SearchProjects history={this.props.history}/>
         </section>
