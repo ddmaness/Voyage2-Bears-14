@@ -1,8 +1,12 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const passport = require('passport');
 const User = require('../model/users.js');
 
 const router = express.Router();
+
+//configure mongoose promises
+mongoose.Promise = global.Promise;
 
 // POST method to register user at /register
 router.post('/register', (req, res) => {
@@ -25,16 +29,37 @@ router.post('/register', (req, res) => {
     });
 });
 
-// POST method to login a user at /login
+// POST method to login a user at /login --> try ASYNC AWAIT
 router.post('/login', (req, res) => {
-    passport.authenticate('local')(req, res, () => {
-        //once logged in, respond with user info in JSON
-        if (req.user) {
-            return res.send(JSON.stringify(req.user));
-        }
-        //else return/handle error
-        return res.send(JSON.stringify({ error: 'Login error' }));
+    //find user by email submitted in login request
+    const query = User.findOne({ email: req.body.email });
+    
+    query.exec().then( (res) => {
+        //if query finds user, set property in response object to match
+        req.body.username = res.username;
+    })
+    .then( () => {
+        //handle passport authentication with modified request
+        passport.authenticate('local')(req, res, () => {
+            //once logged in, respond with user info in JSON
+            if (req.user) {
+                return res.send(JSON.stringify(req.user));
+            }
+            //else return/handle error
+            return res.send(JSON.stringify({ error: 'Login error' }));
+        })
+    })
+    .catch(function(err) {
+        console.log('error: ' + err);
     });
+});
+
+// GET method to check for express session for current user
+router.get('/checksession', (req, res) => {
+    if (req.user) {
+      return res.send(JSON.stringify(req.user));
+    }
+    return res.send(JSON.stringify({}));
 });
 
 // GET method to log a user out at /logout
