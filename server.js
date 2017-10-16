@@ -15,9 +15,10 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const GithubStrategy = require('passport-github2').Strategy;
 
-//import models
+//import models and/or routes
 const Project = require('./model/projects');
-const User = require('./model/users')
+const User = require('./model/users');
+const authentication = require('./api/authentication');
 
 //create express app and router instances
 const app = express();
@@ -195,6 +196,7 @@ router.route('/users')
 
 //set router to respond to and route to requests only with /api, react router should handle others
 app.use('/api', router);
+app.use('/api/authentication', authentication);
 
 //configure Passport authentication
 passport.use(new LocalStrategy(User.authenticate()));

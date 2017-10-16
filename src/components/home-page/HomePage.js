@@ -1,22 +1,18 @@
-import React, { Component } from 'react';
-import SearchProjects from '../search-projects/SearchProjects';
+import React from 'react';
+import SplashSection from './splash-section/SplashSection';
+import { Button } from 'reactstrap';
 
-class HomePage extends Component {
-  render() {
-    return (
-      <div>
-        <section>
-            <SearchProjects history={this.props.history}/>
-        </section>
-
-        <section id ='featured-projects'>
-            <h3>Featured Projects</h3>
-            {/* TODO component for displaying featured projects will go here. This will display info on some number of projects
-                based on criteria that is as of yet undetermined*/}
-        </section>
+export default function HomePage(props) {
+  const { decrementFunction, incrementFunction } = props;
+  return (
+    <div>
+      <SplashSection/>
+      <div className="row">
+        <div className="col-sm-12 col-md-8">
+          <Button onClick={incrementFunction}>Increment</Button>  
+          <Button onClick={decrementFunction}>Decrement</Button>
+        </div>
+      </div>
     </div>
-    );
-  }
+  );
 }
-
-export default HomePage;

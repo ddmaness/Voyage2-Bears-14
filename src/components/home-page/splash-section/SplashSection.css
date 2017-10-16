@@ -1,0 +1,14 @@
+.splash-container {
+    height: 90vh;
+    background-image: url("https://static1.squarespace.com/static/556a1885e4b0bdc6f0794659/t/577a9632ebbd1a47dbec6ce8/1467651681260/AdobeStock_64819783.jpeg?format=2500w");
+    background-size: cover;
+}
+
+.splash-text {
+    background: rgba(0,0,0,0.3);
+    padding: 20vh 0;
+}
+
+.splash-text > h1, .splash-text > p {
+    color: white;
+}

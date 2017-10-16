@@ -1,43 +1,43 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Container } from 'reactstrap';
 import './ProjectListPage.css';
-import ProjectCard from '../project-card/ProjectCard'
+import ProjectCard from '../project-card/ProjectCard';
 
-export default class ProjectsListPage extends Component{
-constructor(props){
-    super(props);
-    this.state={
-      postedProjects:['example1','example2','example3','example4','example5','example6']
+export default class ProjectsListPage extends React.Component {
+  constructor(props){
+      super(props);
+      
+      this.state={
+        postedProjects:['example1','example2','example3','example4','example5','example6']
+      }
     }
-  }
 
-render(){
-  const pages=this.state.postedProjects.map((project,i)=>{
-        return(
-          <ProjectCard key={i} id={i} history={this.props.history}/>
+  render() {
+    const pages = this.state.postedProjects.map((project,i)=>{
+      return(
+        <ProjectCard key={i} id={i} history={this.props.history}/>
       )
-  })
+    })
+
     return(
-      <section id="postpage">
-        <div  className="container">
+      <Container>
+        <div className="d-flex flex-row justify-content-center pt-5">
           <h1 id='explore-projects'>Explore Projects</h1>
-          <form className="input-form">
-            <div className="list-search">
-              <div className="col-lg-6 col-md-6 col-sm-8 col-xs-10 input-group">
-                <input className="form-control" type="text" placeholder="Search by title or keyword..."/>
-                <span className="input-group-btn">
-                <button type="submit" className="btn btn-success search-button">Search</button>
-                </span>
-              </div>
+        </div>
+        <div className="d-flex flex-row justify-content-center">
+          <form className="input-form mb-5 mt-2 col-md-10 col-lg-8">
+            <div className="input-group">
+              <input className="form-control" type="text" placeholder="Search Projects..."/>
+              <span className="input-group-btn">
+                <button type="button" className="btn btn-success search-button">Search</button>
+              </span>
             </div>
           </form>
-            <div className="row">
-              {pages}
-            </div>
         </div>
-      </section>
+        <div className="row">
+          {pages}
+        </div>
+      </Container>
     )
   }
-
-
-
 }
