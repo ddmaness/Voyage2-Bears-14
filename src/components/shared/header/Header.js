@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
+const renderLogin = () => <NavLink tag={Link} to="/login">Log In</NavLink>;
+
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -11,6 +13,25 @@ export default class Header extends React.Component {
     };
 
     this.toggleNavbar = this.toggleNavbar.bind(this);
+    this.renderGreeting = this.renderGreeting.bind(this);
+    this.logOutClick = this.logOutClick.bind(this);
+  }
+  
+  logOutClick(event) {
+    event.preventDefault();
+    const { logUserOut } = this.props;
+    logUserOut();
+  }
+
+  renderGreeting(username) {
+    return (
+      <NavLink>
+        {username} |
+        <a href="/logout" onClick={this.logOutClick}>
+          Log Out
+        </a>
+      </NavLink>
+    );
   }
 
   toggleNavbar() {
@@ -20,6 +41,8 @@ export default class Header extends React.Component {
   }
 
   render() {
+    const { isLoggedIn, username } = this.props.authentication;
+
     return (
       <header className="wrapper">
         <Navbar light expand="sm">
@@ -39,7 +62,7 @@ export default class Header extends React.Component {
                 <NavLink tag={Link} to="/sign-up">Sign Up</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} to="/account/login">Log In</NavLink>
+                { isLoggedIn ? this.renderGreeting(username) : renderLogin() }
               </NavItem>
             </Nav>
           </Collapse>
