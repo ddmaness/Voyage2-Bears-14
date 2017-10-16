@@ -22,17 +22,19 @@ export default class Header extends React.Component {
   render() {
     return (
       <header className="wrapper">
-        <Navbar color="faded" light toggleable>
+        <Navbar light expand="sm">
           <NavbarBrand tag={Link} to="/">ChinguHackathon</NavbarBrand>
-          <NavbarToggler right onClick={this.toggleNavbar} />
+          <NavbarToggler onClick={this.toggleNavbar} />
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <Nav navbar>
               <NavItem>
                 <NavLink tag={Link} to="/">Home</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} to="/projects">Explore Projects</NavLink>
               </NavItem>
+            </Nav>
+            <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink tag={Link} to="/sign-up">Sign Up</NavLink>
               </NavItem>
