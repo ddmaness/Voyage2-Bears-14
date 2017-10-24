@@ -1,16 +1,17 @@
 import React from 'react';
-import ProjectPage from './project-page/ProjectPage';
-import ProjectListPage from './project-list-page/ProjectListPage';
 import {
   BrowserRouter as Router,
   Route,
   Switch
 } from 'react-router-dom';
 
+import ProjectPage from './project-page/ProjectPage';
+import ProjectListPage from './project-list-page/ProjectListPage';
 import Login from './account/LoginContainer'
-import SignUp from './account/SignUp';
+import SignUp from './account/SignUpContainer';
 import HomePage from './home-page/HomePageContainer';
-import HeaderContainer from './shared/header/HeaderContainer';
+import Header from './shared/header/HeaderContainer';
+import SignUpSuccess from './account/SignUpSuccessContainer';
 
 import './App.css';
 
@@ -21,7 +22,7 @@ export default function App(props) {
   return(
     <Router>
       <div className = "wrapper">
-        <HeaderContainer authentication={authentication} />
+        <Header authentication={authentication} />
         <section className="page-content container-fluid">
           <Switch>
             <Route exact path='/' component={HomePage} />
@@ -29,6 +30,7 @@ export default function App(props) {
             <Route path='/projects/:id' component={ProjectPage} />
             <Route exact path='/sign-up' component={SignUp} />
             <Route exaxt path='/login' component={Login} />
+            <Route exaxt path='/sign-up-success' component={SignUpSuccess} />
           </Switch>
         </section>
         <div className="loader-wrapper" style={progress > 0 ? { display: 'block' } : { display: 'none' }}>

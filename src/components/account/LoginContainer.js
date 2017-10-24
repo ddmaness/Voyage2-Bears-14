@@ -1,10 +1,7 @@
 import React from 'react';
-
-import { Redirect } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { incrementProgress, decrementProgress } from '../../actions/progress';
-import { loginAttempt, loginSuccess, loginFailure } from '../../actions/authentication';
+import { Redirect } from 'react-router-dom';
+import { logUserIn } from '../../actions/authentication';
 
 import Login from './Login';
 
@@ -12,68 +9,19 @@ export class LoginContainer extends React.Component {
     constructor(props) {
       super(props);
 
-      this.state = {
-          redirect: false,
-      }
-
-      this.attemptLogin = this.attemptLogin.bind(this);
+      //bound functions
+      this.logUserInFunction = this.logUserInFunction.bind(this);
     }
 
-    async attemptLogin(userData) {
-        const { 
-            decrementProgressAction, 
-            incrementProgressAction,
-            loginAttemptAction,
-            loginFailureAction,
-            loginSuccessAction,
-         } = this.props;
-    
-        // turn on spinner
-        incrementProgressAction();
-
-        //kickoff login attempt
-        loginAttemptAction();
-    
-        // contact login API
-        await fetch(
-          // where to contact
-          '/api/authentication/login',
-          // what to send
-          {
-            method: 'POST',
-            body: JSON.stringify(userData),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            credentials: 'same-origin',
-          },
-        )
-        .then( (response) => {
-            if (response.status === 200) {
-                return response.json();
-            }
-            return null;
-        })
-        .then((json) => {
-            if (json) {
-                loginSuccessAction(json);
-                this.setState({ redirect: true });
-            } else {
-                loginFailureAction(new Error('Authentication Failed at Login'));
-            }
-        })
-        .catch((error) => {
-            loginFailureAction(new Error(error));
-        });
-    
-        // turn off spinner
-        decrementProgressAction();
+    logUserInFunction(userData) {
+        const { dispatch } = this.props;
+        dispatch(logUserIn(userData));
     }
 
     render() {
-        const { redirect } = this.state;
+        const { authentication } = this.props;
 
-        if (redirect) {
+        if (authentication.isLoggedIn) {
             return (
                 <Redirect to="/" />
             );
@@ -81,20 +29,16 @@ export class LoginContainer extends React.Component {
 
         return (
             <div>
-                <Login loginFunction={this.attemptLogin} />
+                <Login loginFunction={this.logUserInFunction} />
             </div>
         );
     }
   }
 
-  function mapDispatchToProps(dispatch) {
-    return bindActionCreators({
-      incrementProgressAction: incrementProgress,
-      decrementProgressAction: decrementProgress,
-      loginAttemptAction: loginAttempt,
-      loginFailureAction: loginFailure,
-      loginSuccessAction: loginSuccess,
-    }, dispatch);
+  function mapStateToProps(state) {
+    return {
+      authentication: state.authentication,
+    };
   }
   
-  export default connect(null, mapDispatchToProps)(LoginContainer);
+  export default connect(mapStateToProps)(LoginContainer);

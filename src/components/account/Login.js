@@ -12,12 +12,20 @@ export default class LoginPage extends React.Component {
 
         this.compileFormData = this.compileFormData.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
     }
 
     // updates state as email value changes
     handleEmailChange(event) {
         this.setState({ email: event.target.value });
+    }
+
+    // catch enter clicks
+    handleKeyPress(target) {
+        if (target.charCode === 13) {
+            this.compileFormData();
+        }
     }
 
     // updates state as password value changes
@@ -45,6 +53,7 @@ export default class LoginPage extends React.Component {
                                 placeholder="user@email.com"
                                 value={this.state.email}
                                 onChange={this.handleEmailChange}
+                                onKeyPress={this.handleKeyPress}
                             />
                         </FormGroup>
                         <FormGroup>
@@ -56,6 +65,7 @@ export default class LoginPage extends React.Component {
                                 placeholder="password"
                                 value={this.state.password}
                                 onChange={this.handlePasswordChange}
+                                onKeyPress={this.handleKeyPress}
                             />
                         </FormGroup>
                         <Button onClick={this.compileFormData}>Log In</Button>

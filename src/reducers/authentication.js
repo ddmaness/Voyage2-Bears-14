@@ -5,6 +5,7 @@ const initialState = {
     isLoggingIn: false,
     lastName: '',
     username: '',
+    registrationSucceeded: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -31,9 +32,20 @@ export default function reducer(state = initialState, action) {
         newState.username = action.json.username;
         return newState;
       }
-      case 'AUTHENTICATION_LOGOUT_FAILURE': {
+      case 'AUTHENTICATION_LOGOUT_FAILURE':
+      case 'AUTHENTICATION_REGISTRATION_FAILURE': {
         //handle error here at some point
         return state;
+      }
+      case 'AUTHENTICATION_REGISTRATION_SUCCESS': {
+        const newState = Object.assign({}, state);
+        newState.registrationSucceeded = true;
+        return newState;
+      }
+      case 'AUTHENTICATION_REGISTRATION_SUCCESS_VIEWED': {
+        const newState = Object.assign({}, state);
+        newState.registrationSucceeded = false;
+        return newState;
       }
       default: {
         return state;
