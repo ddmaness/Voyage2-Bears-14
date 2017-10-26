@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 //components from local files
 import DevTools from './components/shared/DevTools';
-import configureStore from './store/Store';
+import configureStore from './store/index';
 import AppContainer from './components/AppContainer';
 import registerServiceWorker from './registerServiceWorker';
 

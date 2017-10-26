@@ -2,7 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
-const renderLogin = () => <NavLink tag={Link} to="/login">Log In</NavLink>;
+const renderLogin = () => (
+  <Nav className="ml-auto" navbar>
+    <NavItem>
+      <NavLink tag={Link} to="/login">Log In</NavLink>
+    </NavItem>
+    <NavItem>
+      <NavLink tag={Link} to="/sign-up">Sign Up</NavLink>
+    </NavItem>
+  </Nav>
+);
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -19,25 +28,24 @@ export default class Header extends React.Component {
   
   logOutClick(event) {
     event.preventDefault();
-    const { logUserOut } = this.props;
-    logUserOut();
-  }
-
-  renderGreeting(username) {
-    return (
-      <NavLink>
-        {username} |
-        <a href="/logout" onClick={this.logOutClick}>
-          Log Out
-        </a>
-      </NavLink>
-    );
+    const { logUserOutFunction } = this.props;
+    logUserOutFunction();
   }
 
   toggleNavbar() {
     this.setState({
       isOpen: !this.state.isOpen,
     });
+  }
+
+  renderGreeting(username) {
+    return (
+      <Nav className="ml-auto" navbar>
+        <NavItem>
+          {username} | <a href="/logout" onClick={this.logOutClick}>Log Out</a>
+        </NavItem>
+      </Nav>
+    );
   }
 
   render() {
@@ -57,14 +65,7 @@ export default class Header extends React.Component {
                 <NavLink tag={Link} to="/projects">Explore Projects</NavLink>
               </NavItem>
             </Nav>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink tag={Link} to="/sign-up">Sign Up</NavLink>
-              </NavItem>
-              <NavItem>
-                { isLoggedIn ? this.renderGreeting(username) : renderLogin() }
-              </NavItem>
-            </Nav>
+            { isLoggedIn ? this.renderGreeting(username) : renderLogin() }
           </Collapse>
         </Navbar>
       </header>

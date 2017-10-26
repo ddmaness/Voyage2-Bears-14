@@ -19,13 +19,20 @@ router.post('/register', (req, res) => {
     });
 
     // save user to db using Passport register method
-    User.register(newUser, req.body.password, (err, user) => {
+    User.register(newUser, req.body.password, (err) => {
         // provide error object if error and handle
         if (err) {
             return res.send(JSON.stringify({ error: err }));
         }
-        // Otherwise, provide JSON object with newly registered user info
-        return res.send(JSON.stringify(user));
+        // Otherwise log them in
+        return passport.authenticate('local')(req, res, () => {
+            // If logged in, we should have user info to send back
+            if (req.user) {
+                return res.send(JSON.stringify(req.user));
+            }
+            // Otherwise return an error
+            return res.send(JSON.stringify({ error: 'There was an error logging in' }));
+        });
     });
 });
 
