@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
-import { compileFormData, handleInputChange, handleKeyPress } from '../../utils/utils'
 
 export default class ProfileEdit extends React.Component {
         constructor(props){
@@ -13,10 +12,32 @@ export default class ProfileEdit extends React.Component {
                 timezone: '',
             };
 
-            this.compileFormData = compileFormData.bind(this);
-            this.handleInputChange = handleInputChange.bind(this);
-            this.handleKeyPress = handleKeyPress.bind(this);
+            this.compileFormData = this.compileFormData.bind(this);
+            this.handleInputChange = this.handleInputChange.bind(this);
+            this.handleKeyPress = this.handleKeyPress.bind(this);
         }
+
+            // Put everything together and send it up to the register function
+        compileFormData() {
+            const { editProfile } = this.props;
+            const formData = this.state;
+            editProfile(formData);
+        }
+
+        // Handle input changes
+        handleInputChange(e) {
+            this.setState({ [e.currentTarget.id]: e.target.value });
+        }
+
+        // catch enter clicks
+        handleKeyPress(target) {
+            if (target.charCode === 13) {
+            target.preventDefault();
+            this.compileFormData();
+            }
+        }
+
+
         render() {
             return(
                 <div className="row justify-content-center">
@@ -62,6 +83,7 @@ export default class ProfileEdit extends React.Component {
                                 />
                             </FormGroup>
                             <FormGroup row>
+                                {/* TODO selected value should be displayed in select box when virtual dom rerenders */}
                                 <Label for="timezone">Timezone GMT {this.state.timezone}</Label>
                                 {/* Drop-down menu adapted from https://gist.github.com/jonathanforsythe/1065260 */}
                                 <Input type="select" name="timezone" id="timezone" value={this.state.timezone} onChange={this.handleInputChange}>

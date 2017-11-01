@@ -1,8 +1,7 @@
 // Put everything together and send it up to the register function
-function compileFormData() {
-    const { signupFunction } = this.props;
+function compileFormData( func ) {
     const formData = this.state;
-    signupFunction(formData);
+    this.props.func(formData);
 }
 
 // Handle input changes
