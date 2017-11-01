@@ -2,7 +2,22 @@ import React from 'react';
 import { Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
 import { compileFormData, handleInputChange, handleKeyPress } from '../../utils/utils'
 
-export default function ProfileEdit () {
+export default class ProfileEdit extends React.Component {
+        constructor(props){
+            super(props);
+
+            this.state = {
+                background: '',
+                skills: '',
+                languages: '',
+                timezone: '',
+            };
+
+            this.compileFormData = compileFormData.bind(this);
+            this.handleInputChange = handleInputChange.bind(this);
+            this.handleKeyPress = handleKeyPress.bind(this);
+        }
+        render() {
             return(
                 <div className="row justify-content-center">
                     <div className="col-10 col-md-8 col-lg-6">
@@ -15,8 +30,11 @@ export default function ProfileEdit () {
                                 <Input
                                     id="background"
                                     name="background"
+                                    onChange={this.handleInputChange}
+                                    onKeyPress={this.handleKeyPress}
                                     placeholder="Describe your background"
                                     type="textarea"
+                                    value={this.state.background}
                                 />
                             </FormGroup>
                             <FormGroup row>
@@ -24,8 +42,11 @@ export default function ProfileEdit () {
                                 <Input
                                     id="skills"
                                     name="skills"
+                                    onChange={this.handleInputChange}
+                                    onKeyPress={this.handleKeyPress}
                                     placeholder="Describe your skills"
                                     type="textarea"
+                                    value={this.state.skills}
                                 />
                             </FormGroup>
                             <FormGroup row>
@@ -33,14 +54,17 @@ export default function ProfileEdit () {
                                 <Input
                                     id="languages"
                                     name="languages"
+                                    onChange={this.handleInputChange}
+                                    onKeyPress={this.handleKeyPress}
                                     placeholder="English, Spanish..."
                                     type="text"
+                                    value={this.state.languages}
                                 />
                             </FormGroup>
                             <FormGroup row>
-                                <Label for="timezone">Timezone</Label>
+                                <Label for="timezone">Timezone GMT {this.state.timezone}</Label>
                                 {/* Drop-down menu adapted from https://gist.github.com/jonathanforsythe/1065260 */}
-                                <Input type='select' name="timezone" id="timezone">
+                                <Input type="select" name="timezone" id="timezone" value={this.state.timezone} onChange={this.handleInputChange}>
                                     <option value="-12.0">(GMT -12:00) Eniwetok, Kwajalein</option>
                                     <option value="-11.0">(GMT -11:00) Midway Island, Samoa</option>
                                     <option value="-10.0">(GMT -10:00) Hawaii</option>
@@ -75,11 +99,11 @@ export default function ProfileEdit () {
                                 </Input>
                             </FormGroup>
                             <div className="row justify-content-center">
-                                <Button outline color="primary" size="lg">Save Profile</Button>
+                                <Button outline color="primary" onClick={this.compileFormData} size="lg">Save Profile</Button>
                             </div>
                         </Form>
                     </div>
                 </div>
-    
         );
+    }
 }

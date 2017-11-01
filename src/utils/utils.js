@@ -8,6 +8,7 @@ function compileFormData() {
 // Handle input changes
 function handleInputChange(e) {
     this.setState({ [e.currentTarget.id]: e.target.value });
+    console.log(this.state);
 }
 
 // catch enter clicks
