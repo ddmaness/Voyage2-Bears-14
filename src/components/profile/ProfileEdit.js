@@ -6,10 +6,11 @@ export default class ProfileEdit extends React.Component {
             super(props);
 
             this.state = {
-                background: '',
-                skills: '',
-                languages: '',
-                timezone: '',
+                id: this.props.authentication.id,
+                background: this.props.profile.background,
+                skills: this.props.profile.skills,
+                languages: this.props.profile.languages,
+                timezone: this.props.profile.timezone,
             };
 
             this.compileFormData = this.compileFormData.bind(this);
@@ -27,6 +28,7 @@ export default class ProfileEdit extends React.Component {
         // Handle input changes
         handleInputChange(e) {
             this.setState({ [e.currentTarget.id]: e.target.value });
+            console.log(this.state)
         }
 
         // catch enter clicks

@@ -1,7 +1,7 @@
 const initialState = {
 	background: '',
 	skills: '',
-	language: '',
+	languages: '',
 	timezone: '',
 }
 
@@ -11,7 +11,7 @@ export default function reducer(state=initialState, action) {
 			const newState = Object.assign({}, state);
 			newState.background = action.json.background;
 			newState.skills = action.json.skills;
-			newState.language = action.json.language;
+			newState.languages = action.json.languages;
 			newState.timezone = action.json.timezone;
 			return newState;
 		}
@@ -19,6 +19,18 @@ export default function reducer(state=initialState, action) {
 			//TODO error message
 			return state;
 		}
+		case 'AUTHENTICATION_LOGIN_SUCCESS': {
+			const newState = Object.assign({}, state);
+			newState.background = action.json.background;
+			newState.skills = action.json.skills;
+			newState.languages = action.json.languages;
+			newState.timezone = action.json.timezone;
+			return newState;
+		} 
+		case 'AUTHENTICATION_LOGOUT_SUCCESS': {
+        	const newState = Object.assign({}, initialState);
+        	return newState;
+        }
 		default: {
 			return state;
 		}
