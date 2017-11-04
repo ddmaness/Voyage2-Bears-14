@@ -10,56 +10,65 @@ mongoose.Promise = global.Promise;
 
 // POST method to register user at /register
 router.post('/register', (req, res) => {
-    //create a user object to save to db, using values from req body (as JSON)
-    const newUser = new User({
-        username: req.body.username,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email
-    });
+    // First, check and make sure the email doesn't already exist
+    const query = User.findOne({ email: req.body.email });
+    const foundUser = query.exec().then((result) => { return true; }, (err) => { return false; });
 
-    // save user to db using Passport register method
-    User.register(newUser, req.body.password, (err) => {
-        // provide error object if error and handle
-        if (err) {
-            return res.send(JSON.stringify({ error: err }));
-        }
-        // Otherwise log them in
-        return passport.authenticate('local')(req, res, () => {
-            // If logged in, we should have user info to send back
-            if (req.user) {
-                return res.send(JSON.stringify(req.user));
-            }
-            // Otherwise return an error
-            return res.send(JSON.stringify({ error: 'There was an error logging in' }));
-        });
-    });
+    if (foundUser) { return res.send(JSON.stringify({ error: 'Email or username already exists' })); }
+
+    if (!foundUser) {
+      //create a user object to save to db, using values from req body (as JSON)
+      const newUser = new User({
+          username: req.body.username,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.email
+      });
+
+      // save user to db using Passport register method
+      return User.register(newUser, req.body.password, (err) => {
+          // provide error object if error and handle
+          if (err) {
+              return res.send(JSON.stringify({ error: err }));
+          }
+          // Otherwise log them in
+          return passport.authenticate('local')(req, res, () => {
+              // If logged in, we should have user info to send back
+              if (req.user) {
+                  return res.send(JSON.stringify(req.user));
+              }
+              // Otherwise return an error
+              return res.send(JSON.stringify({ error: 'There was an error registering the user' }));
+          });
+      });
+    }
+
+    // return an error if all else fails
+    return res.send(JSON.stringify({ error: 'There was an error registering the user' }));
 });
 
 // POST method to login a user at /login --> try ASYNC AWAIT
 router.post('/login', (req, res) => {
-    //find user by email submitted in login request
-    const query = User.findOne({ email: req.body.email });
-    
-    query.exec().then( (res) => {
-        //if query finds user, set property in response object to match
-        req.body.username = res.username;
+  //find user by email submitted in login request
+  const query = User.findOne({ email: req.body.email });
+  const founduser = query.exec().then((result) => { return true; }, (err) => { return false; });
+  
+  if (founduser) {
+      //if query finds user, set property in response object to match
+      req.body.username = res.username;
+  }
+
+    //handle passport authentication with modified request
+    passport.authenticate('local')(req, res, () => {
+        //once logged in, respond with user info in JSON
+        if (req.user) {
+            return res.send(JSON.stringify(req.user));
+        }
+        //else return/handle error
+        return res.send(JSON.stringify({ error: 'Login error' }));
     })
-    .then( () => {
-        //handle passport authentication with modified request
-        passport.authenticate('local')(req, res, () => {
-            //once logged in, respond with user info in JSON
-            if (req.user) {
-                return res.send(JSON.stringify(req.user));
-            }
-            //else return/handle error
-            return res.send(JSON.stringify({ error: 'Login error' }));
-        })
-    })
-    .catch(function(err) {
-        console.log('error: ' + err);
-    });
 });
+
 
 // GET method to check for express session for current user
 router.get('/checksession', (req, res) => {
