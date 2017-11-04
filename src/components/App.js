@@ -12,6 +12,7 @@ import SignUp from './account/SignUpContainer';
 import HomePage from './home-page/HomePageContainer';
 import Header from './shared/header/HeaderContainer';
 import SignUpSuccess from './account/SignUpSuccessContainer';
+import ProfileEdit from './profile/ProfileEditContainer';
 
 import './App.css';
 
@@ -31,6 +32,7 @@ export default function App(props) {
             <Route exact path='/sign-up' component={SignUp} />
             <Route exaxt path='/login' component={Login} />
             <Route exaxt path='/sign-up-success' component={SignUpSuccess} />
+            <Route exact path='/profile' component={ProfileEdit} />
         </section>
         <div className="loader-wrapper" style={progress > 0 ? { display: 'block' } : { display: 'none' }}>
           <div className="loader-box">

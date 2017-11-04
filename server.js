@@ -194,6 +194,25 @@ router.route('/users')
         });
     });
 
+// POST method to edit user profile at /profile
+app.post('/profile', function(req, res) {
+    // Find user in DB return err if not found
+    const query = { _id: req.body.id }
+    const profileData = {
+        $set: {
+        background: req.body.background,
+        timezone: req.body.timezone,
+        'skills.0': req.body.skills,
+        'languages.0': req.body.languages,
+        },
+    }
+    User.updateOne(query, profileData)
+    .then(function(result) {
+        console.log(JSON.stringify(req.user));
+        return res.send(JSON.stringify(req.user));
+    });
+});
+
 //set router to respond to and route to requests only with /api, react router should handle others
 app.use('/api', router);
 app.use('/api/authentication', authentication);
