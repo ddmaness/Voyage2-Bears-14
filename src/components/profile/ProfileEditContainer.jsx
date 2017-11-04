@@ -29,7 +29,7 @@ class ProfileEditContainer extends React.Component {
         // contact the API
         const resp = await fetch(
         // where to contact
-        'profile', 
+        'api/profile/edit-profile', 
         // what to send
         {
           method: 'POST',
