@@ -1,10 +1,10 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Route,
-  Switch
+  Route
 } from 'react-router-dom';
 
+import ErrorBox from './shared/error-box/ErrorBoxContainer'
 import ProjectPage from './project-page/ProjectPage';
 import ProjectListPage from './project-list-page/ProjectListPage';
 import Login from './account/LoginContainer'
@@ -25,7 +25,7 @@ export default function App(props) {
       <div className = "wrapper">
         <Header authentication={authentication} />
         <section className="page-content container-fluid">
-          <Switch>
+            <ErrorBox />
             <Route exact path='/' component={HomePage} />
             <Route exact path='/projects' component={ProjectListPage} />
             <Route path='/projects/:id' component={ProjectPage} />
@@ -33,7 +33,6 @@ export default function App(props) {
             <Route exaxt path='/login' component={Login} />
             <Route exaxt path='/sign-up-success' component={SignUpSuccess} />
             <Route exact path='/profile' component={ProfileEdit} />
-          </Switch>
         </section>
         <div className="loader-wrapper" style={progress > 0 ? { display: 'block' } : { display: 'none' }}>
           <div className="loader-box">

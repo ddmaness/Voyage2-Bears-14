@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
+import { AvForm, AvGroup, AvInput, AvFeedback } from 'availity-reactstrap-validation';
+import { Button, Label, Col } from 'reactstrap';
 
 export default class SignUp extends React.Component {
     constructor(props){
@@ -17,16 +18,9 @@ export default class SignUp extends React.Component {
             timezone: '',
         };
 
-        this.compileFormData = this.compileFormData.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
-    }
-
-    // Put everything together and send it up to the register function
-    compileFormData() {
-        const { signupFunction } = this.props;
-        const formData = this.state;
-        signupFunction(formData);
+        this.handleValidSubmit = this.handleValidSubmit.bind(this);
     }
 
     // Handle input changes
@@ -42,6 +36,13 @@ export default class SignUp extends React.Component {
         }
     }
 
+    // Handle submission once all form data is valid
+    handleValidSubmit() {
+      const { signupFunction } = this.props;
+      const formData = this.state;
+      signupFunction(formData);
+    }
+
     render() {
         return (
             <div className="row justify-content-center">
@@ -51,7 +52,7 @@ export default class SignUp extends React.Component {
                     </div>
                     <div className="row justify-content-center my-3">
                         <Col sm={6} >
-                            <Button classname="mb-2" size="lg" block outline color="primary"><span className="fa fa-facebook fa-lg"></span>  Sign up with Facebook</Button>
+                            <Button className="mb-2" size="lg" block outline color="primary"><span className="fa fa-facebook fa-lg"></span>  Sign up with Facebook</Button>
                         </Col>
                         <Col sm={6}>
                             <Button  className="mb-2" size="lg" block outline color="info"><span className="fa fa-github fa-lg"></span>  Sign up with Github</Button>
@@ -60,76 +61,87 @@ export default class SignUp extends React.Component {
                     <div className="text-center mb-3">
                         <h5>~ OR ~</h5>
                     </div>
-                    <Form>
-                        <FormGroup row>
-                            <Label for="firstName">First Name</Label>
-                            <Input
-                                id="firstName"
-                                name="firstName"
-                                onChange={this.handleInputChange}
-                                onKeyPress={this.handleKeyPress}
-                                placeholder="John"
-                                type="text"
-                                value={this.state.firstName}
-                            />
-                        </FormGroup>
-                        <FormGroup row>
-                            <Label for="lastName">Last Name</Label>
-                            <Input
-                                id="lastName"
-                                name="lastName"
-                                onChange={this.handleInputChange}
-                                onKeyPress={this.handleKeyPress}
-                                placeholder="Smith"
-                                type="text"
-                                value={this.state.lastName}
-                            />
-                        </FormGroup>
-                        <FormGroup row>
+                    <AvForm onValidSubmit={this.handleValidSubmit}>
+                        <AvGroup row>
                             <Label for="email">Email</Label>
-                            <Input
+                            <AvInput
                                 id="email"
                                 name="email"
                                 onChange={this.handleInputChange}
                                 onKeyPress={this.handleKeyPress}
                                 placeholder="user@email.com"
+                                required
                                 type="email"
                                 value={this.state.email}
                             />
-                        </FormGroup>
-                        <FormGroup row>
-                            <Label for="username">Username</Label>
-                            <Input
-                                id="username"
-                                name="username"
-                                onChange={this.handleInputChange}
-                                onKeyPress={this.handleKeyPress}
-                                placeholder="username"
-                                type="text"
-                                value={this.state.username}
-                            />
-                        </FormGroup>
-                        <FormGroup row>
+                            <AvFeedback>Please enter your valid email address.</AvFeedback>
+                        </AvGroup>
+                        <AvGroup row>
                             <Label for="password">Password</Label>
-                            <Input
+                            <AvInput
                                 id="password"
+                                minLength="8"
                                 name="password"
                                 onChange={this.handleInputChange}
                                 onKeyPress={this.handleKeyPress}
                                 placeholder="password"
+                                required
                                 type="password"
                                 value={this.state.password}
                             />
+                            <AvFeedback>Passwords should contain at least eight characters.</AvFeedback>
                             <span>
                                 We recommend a password service like&nbsp;
                                 <a href="https://www.lastpass.com/" target="_blank" rel="noopener noreferrer">LastPass</a>
                                 &nbsp;or <a href="https://1password.com/" target="_blank" rel="noopener noreferrer">1Password</a>
                             </span>
-                        </FormGroup>
+                        </AvGroup>
+                        <AvGroup row>
+                            <Label for="username">Username</Label>
+                            <AvInput
+                                id="username"
+                                name="username"
+                                onChange={this.handleInputChange}
+                                onKeyPress={this.handleKeyPress}
+                                placeholder="username"
+                                required
+                                type="text"
+                                value={this.state.username}
+                            />
+                            <AvFeedback>Please input a username.</AvFeedback>
+                        </AvGroup>
+                        <AvGroup row>
+                            <Label for="firstName">First Name</Label>
+                            <AvInput
+                                id="firstName"
+                                name="firstName"
+                                onChange={this.handleInputChange}
+                                onKeyPress={this.handleKeyPress}
+                                placeholder="John"
+                                required
+                                type="text"
+                                value={this.state.firstName}
+                            />
+                            <AvFeedback>Please enter your first name.</AvFeedback>
+                        </AvGroup>
+                        <AvGroup row>
+                            <Label for="lastName">Last Name</Label>
+                            <AvInput
+                                id="lastName"
+                                name="lastName"
+                                onChange={this.handleInputChange}
+                                onKeyPress={this.handleKeyPress}
+                                placeholder="Smith"
+                                required
+                                type="text"
+                                value={this.state.lastName}
+                            />
+                            <AvFeedback>Please enter your last name.</AvFeedback>
+                        </AvGroup>
                         <div className="row justify-content-center">
-                            <Button outline color="primary" onClick={this.compileFormData} size="lg">Sign Up!</Button>
+                            <Button outline color="primary" size="lg">Sign Up!</Button>
                         </div>
-                    </Form>
+                    </AvForm>
                 </div>
             </div>
         );

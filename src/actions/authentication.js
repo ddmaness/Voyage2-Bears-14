@@ -1,5 +1,6 @@
 import 'whatwg-fetch';
 import { decrementProgress, incrementProgress } from './progress';
+import { clearError } from './error';
 
 // Action Creators
 export const loginAttempt = () => ({ type: 'AUTHENTICATION_LOGIN_ATTEMPT' });
@@ -7,7 +8,7 @@ export const loginFailure = error => ({ type: 'AUTHENTICATION_LOGIN_FAILURE', er
 export const loginSuccess = json => ({ type: 'AUTHENTICATION_LOGIN_SUCCESS', json });
 export const logoutFailure = error => ({ type: 'AUTHENTICATION_LOGOUT_FAILURE', error });
 export const logoutSuccess = () => ({ type: 'AUTHENTICATION_LOGOUT_SUCCESS' });
-export const registrationFailure = () => ({ type: 'AUTHENTICATION_REGISTRATION_FAILURE' });
+export const registrationFailure = error => ({ type: 'AUTHENTICATION_REGISTRATION_FAILURE', error });
 export const registrationSuccess = () => ({ type: 'AUTHENTICATION_REGISTRATION_SUCCESS' });
 export const registrationSuccessViewed = () => ({ type: 'AUTHENTICATION_REGISTRATION_SUCCESS_VIEWED' });
 export const sessionCheckFailure = () => ({ type: 'AUTHENTICATION_SESSION_CHECK_FAILURE' });
@@ -45,6 +46,9 @@ export function checkSession() {
 //Log In Function
 export function logUserIn(userData) {
     return async (dispatch) => {
+        // clear the error box if it's displayed
+        dispatch(clearError());
+
         // turn on spinner
         dispatch(incrementProgress());
 
@@ -69,13 +73,13 @@ export function logUserIn(userData) {
             if (response.status === 200) {
                 return response.json();
             }
-            return null;
+            //return null;
         })
         .then((json) => {
             if (json) {
                 dispatch(loginSuccess(json));
             } else {
-                dispatch(loginFailure(new Error('Authentication Failed at Login')));
+                dispatch(loginFailure(new Error('Email or Password Incorrect. Please Try again.')));
             }
         })
         .catch((error) => {
@@ -91,6 +95,8 @@ export function logUserIn(userData) {
 // Log Out Function
 export function logUserOut() {
     return async (dispatch) => {
+        // clear the error box if it's displayed
+        dispatch(clearError());
 
         // turn on spinner
         dispatch(incrementProgress());
@@ -109,11 +115,11 @@ export function logUserOut() {
             if (response.status === 200) {
                 dispatch(logoutSuccess());
             } else {
-                dispatch(logoutFailure(`Error: ${response.status}`));
+                dispatch(logoutFailure(new Error(response.status)));
             }
         })
         .catch((error) => {
-        dispatch(logoutFailure(error));
+          dispatch(logoutFailure(new Error(error)));
         });
 
         // turn off spinner
@@ -124,6 +130,9 @@ export function logUserOut() {
 //Register a new User
 export function registerUser(userData) {
     return async (dispatch) => {
+      // clear the error box if it's displayed
+      dispatch(clearError());
+
       // turn on spinner
       dispatch(incrementProgress());
   
@@ -148,15 +157,15 @@ export function registerUser(userData) {
         return null;
       })
       .then(async (json) => {
-        if (json) {
+        if (json && json.username) {
           await dispatch(loginSuccess(json));
           await dispatch(registrationSuccess());
         } else {
-          dispatch(registrationFailure(new Error('Registration Failed')));
+          dispatch(registrationFailure(new Error(json.error.message ? 'Email or username already exists' : json.error)));
         }
       })
       .catch((error) => {
-        dispatch(registrationFailure(new Error(error)));
+        dispatch(registrationFailure(new Error(error.message || 'Registration Failed. Please try again.')));
       });
   
       // turn off spinner
