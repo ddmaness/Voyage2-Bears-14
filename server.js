@@ -19,6 +19,7 @@ const GithubStrategy = require('passport-github2').Strategy;
 const Project = require('./model/projects');
 const User = require('./model/users');
 const authentication = require('./api/authentication');
+const profile = require('./api/profile');
 
 //create express app and router instances
 const app = express();
@@ -160,17 +161,6 @@ router.route('/projects/:project_id')
 
 //establish the /api/users route for our /api router
 router.route('/users')
-    //retrieve all users
-    .get(function(req, res) {
-        User.find(function(err, users) {
-        if (err)
-            //handle error
-            res.send(err);
-            //responds with a json object of all users
-            res.json(users)
-        });
-    })
-    //post new user to MongoDB
     .post(function(req, res) {
         let user = new User();
 
@@ -194,28 +184,10 @@ router.route('/users')
         });
     });
 
-// POST method to edit user profile at /profile
-app.post('/profile', function(req, res) {
-    // Find user in DB return err if not found
-    const query = { _id: req.body.id }
-    const profileData = {
-        $set: {
-        background: req.body.background,
-        timezone: req.body.timezone,
-        'skills.0': req.body.skills,
-        'languages.0': req.body.languages,
-        },
-    }
-    User.updateOne(query, profileData)
-    .then(function(result) {
-        console.log(JSON.stringify(req.user));
-        return res.send(JSON.stringify(req.user));
-    });
-});
-
 //set router to respond to and route to requests only with /api, react router should handle others
 app.use('/api', router);
 app.use('/api/authentication', authentication);
+app.use('/api/profile', profile);
 
 //configure Passport authentication
 passport.use(new LocalStrategy(User.authenticate()));
