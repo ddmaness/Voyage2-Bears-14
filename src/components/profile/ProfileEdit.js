@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
-import { Redirect } from 'react-router-dom';
 
 export default class ProfileEdit extends React.Component {
         constructor(props){
@@ -8,7 +7,6 @@ export default class ProfileEdit extends React.Component {
 
             this.state = {
                 //if isLoggedin returns false redirect is true
-                redirect: !this.props.authentication.isLoggedIn,
                 id: this.props.authentication.id,
                 background: this.props.profile.background,
                 skills: this.props.profile.skills,
@@ -44,11 +42,6 @@ export default class ProfileEdit extends React.Component {
 
 
         render() {
-            if (this.state.redirect) {
-                return(
-                    <Redirect to='/login' />
-                    )
-            }
             return(
                 <div className="row justify-content-center">
                     <div className="col-10 col-md-8 col-lg-6">
