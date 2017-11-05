@@ -5,6 +5,11 @@ const initialState = {
     isLoggingIn: false,
     lastName: '',
     username: '',
+    email: '',
+    background: '',
+    skills: '',
+    languages: '',
+    timezone: '',
     registrationSucceeded: false,
 };
 
@@ -30,6 +35,11 @@ export default function reducer(state = initialState, action) {
         newState.isLoggingIn = false;
         newState.lastName = action.json.lastName;
         newState.username = action.json.username;
+        newState.email = action.json.email;
+        newState.background = action.json.background;
+        newState.skills = action.json.skills;
+        newState.languages = action.json.languages;
+        newState.timezome = action.json.timezone;
         return newState;
       }
       case 'AUTHENTICATION_LOGOUT_FAILURE':

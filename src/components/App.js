@@ -13,7 +13,6 @@ import SignUp from './account/SignUpContainer';
 import HomePage from './home-page/HomePageContainer';
 import Header from './shared/header/HeaderContainer';
 import SignUpSuccess from './account/SignUpSuccessContainer';
-import ProfileEdit from './profile/ProfileEditContainer';
 import ProfilePage from './profile/ProfilePageContainer';
 
 import './App.css';

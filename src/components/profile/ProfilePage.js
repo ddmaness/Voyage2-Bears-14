@@ -1,10 +1,13 @@
 import React from 'react';
 import classnames from 'classnames';
-import { Container, Jumbotron, Nav, NavItem, NavLink, Col, Row, TabPane, TabContent, Card, CardTitle, CardText, Button } from 'reactstrap';
+import { Container, Jumbotron, Nav, NavItem, NavLink, Row, TabPane, TabContent } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 import './ProfilePage.css';
 import avatar from './profile-placeholder.png';
+
+import ProfileEdit from './ProfileEditContainer';
+import ProfileInfo from './ProfileInfo';
 
 export default class ProfilePage extends React.Component {
   constructor(props){
@@ -27,12 +30,15 @@ export default class ProfilePage extends React.Component {
   render() {
     return(
       <Container>
-        <Jumbotron className="d-flex justify-content-center align-content-center">
-          <h1>{this.props.user.firstName} {this.props.user.lastName}</h1>
+        <Jumbotron>
+          <Row className="justify-content-center">
+            <h1>{this.props.user.firstName} {this.props.user.lastName}</h1>
+          </Row>
+          <Row className="justify-content-center">
+            <img src={avatar} alt="Avatar placeholder" />
+          </Row>
         </Jumbotron>
-
-        <img src={avatar} alt="Avatar placeholder" />
-        <Nav tabs>
+        <Nav tabs className="nav-justified">
           <NavItem>
             <NavLink
               className={classnames({ active: this.state.activeTab === 'profile' })}
@@ -56,28 +62,11 @@ export default class ProfilePage extends React.Component {
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="profile">
-            <Row>
-              <Col sm="12">
-                <h4>Tab 1 Contents</h4>
-              </Col>
-            </Row>
+            <ProfileInfo user={this.props.user} />
           </TabPane>
           <TabPane tabId="settings">
             <Row>
-              <Col sm="6">
-                <Card body>
-                  <CardTitle>Special Title Treatment</CardTitle>
-                  <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                  <Button>Go somewhere</Button>
-                </Card>
-              </Col>
-              <Col sm="6">
-                <Card body>
-                  <CardTitle>Special Title Treatment</CardTitle>
-                  <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                  <Button>Go somewhere</Button>
-                </Card>
-              </Col>
+
             </Row>
           </TabPane>
         </TabContent>

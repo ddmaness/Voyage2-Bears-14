@@ -1,0 +1,17 @@
+.profile-info-section {
+  border-top: 1px solid rgba(200,200,200,.7);
+}
+
+.profile-info-header {
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.profile-info-body {
+  padding: 3rem 0;
+}
+
+.profile-info-item {
+  display: flex;
+  justify-content: center;
+}
