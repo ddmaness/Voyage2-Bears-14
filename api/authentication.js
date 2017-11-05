@@ -20,10 +20,10 @@ router.post('/register', (req, res) => {
 
     //create a user object to save to db, using values from req body (as JSON)
     const newUser = new User({
-        username: req.body.username,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email
+      username: req.body.username,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email
     });
 
     // save user to db using Passport register method
