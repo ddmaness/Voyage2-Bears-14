@@ -73,7 +73,19 @@ export default class ProfilePage extends React.Component {
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="profile">
-            <ProfileInfo userAuth={this.props.userAuth} userProfile={this.props.userProfile}/>
+            {!this.props.isEditing &&
+              <ProfileInfo 
+                userAuth={this.props.userAuth}
+                userProfile={this.props.userProfile}
+                switchEdit={this.props.switchEdit}
+              />
+            }
+            {this.props.isEditing &&
+              <ProfileEdit
+                isEditing={this.props.isEditing}
+                switchEdit={this.props.switchEdit}
+              />
+            }
           </TabPane>
           <TabPane tabId="projects">
             <ProfileProjects />

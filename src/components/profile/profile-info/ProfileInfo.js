@@ -1,15 +1,14 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Row, Col, Button } from 'reactstrap';
 
 export default class ProfileInfo extends React.Component {
-
   render() {
     const { userAuth, userProfile } = this.props;
 
     return(
       <div>
         <Row className="profile-info-section mt-5 justify-content-center">
+          <Button onClick={() => this.props.switchEdit(true)}>Edit Information</Button>
           <Row className="profile-info-header justify-content-center">
             <h3>
               General Info <small className="text-muted">Basic user details</small>

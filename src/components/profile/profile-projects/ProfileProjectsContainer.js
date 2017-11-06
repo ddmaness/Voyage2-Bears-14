@@ -7,7 +7,7 @@ import { getProfileProjects } from '../../../actions/project';
 
 export class ProfileProjectsContainer extends React.Component {
   componentDidMount() {
-    const { dispatch, authentication, projects } = this.props;
+    const { dispatch, authentication } = this.props;
     dispatch(getProfileProjects(authentication.id, 'creator'));
     dispatch(getProfileProjects(authentication.id, 'member'));
   }

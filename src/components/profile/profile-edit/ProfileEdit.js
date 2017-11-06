@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 export default class ProfileEdit extends React.Component {
         constructor(props){
@@ -8,6 +8,7 @@ export default class ProfileEdit extends React.Component {
             this.state = {
                 //if isLoggedin returns false redirect is true
                 id: this.props.authentication.id,
+                username: this.props.authentication.username,
                 background: this.props.profile.background,
                 skills: this.props.profile.skills,
                 languages: this.props.profile.languages,
@@ -39,7 +40,6 @@ export default class ProfileEdit extends React.Component {
             this.compileFormData();
             }
         }
-
 
         render() {
             return(
@@ -124,7 +124,8 @@ export default class ProfileEdit extends React.Component {
                                 </Input>
                             </FormGroup>
                             <div className="row justify-content-center">
-                                <Button outline color="primary" onClick={this.compileFormData} size="lg">Save Profile</Button>
+                                <Button outline className="mr-2" color="danger" onClick={() => this.props.switchEdit(false)} size="lg">Cancel</Button>
+                                <Button outline className="ml-2" color="primary" onClick={this.compileFormData} size="lg">Save Profile</Button>
                             </div>
                         </Form>
                     </div>

@@ -16,7 +16,7 @@ export function editProfileFunction(userData) {
         // contact the API
         await fetch(
         // where to contact
-        'api/profile/edit-profile', 
+        '/api/profile/edit-profile', 
         // what to send
         {
         	method: 'POST',

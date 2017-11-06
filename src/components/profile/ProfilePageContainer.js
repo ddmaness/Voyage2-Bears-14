@@ -5,17 +5,38 @@ import { Redirect } from 'react-router-dom';
 import ProfilePage from './ProfilePage';
 
 export class ProfilePageContainer extends React.Component {
-  render() {
-      const { authentication, profile } = this.props;
+  constructor(props) {
+    super(props);
 
-      if (!authentication.isLoggedIn) {
-          return(
-            <Redirect to='/login' />
-          )
-      }
-      return (
-        <ProfilePage userAuth={authentication} userProfile={profile}/>
+    this.switchToEdit = this.switchToEdit.bind(this);
+    this.state = {
+      isEditing: false
+    }
+  }
+
+  switchToEdit(setting) {
+    console.log("switched");
+    this.setState({
+      isEditing: setting
+    });
+  }
+
+  render() {
+    const { authentication, profile } = this.props;
+
+    if (!authentication.isLoggedIn) {
+      return(
+        <Redirect to='/login' />
       );
+    }
+    return(
+        <ProfilePage 
+          userAuth={authentication}
+          userProfile={profile}
+          switchEdit={this.switchToEdit}
+          isEditing={this.state.isEditing}
+        />
+    );
   }
 }
 

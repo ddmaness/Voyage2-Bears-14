@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 
 import { editProfileFunction } from '../../../actions/profile';
 import ProfileEdit from './ProfileEdit';
@@ -14,19 +13,12 @@ class ProfileEditContainer extends React.Component {
 	}
 	
   editProfile(userData) {
-    const { dispatch } = this.props;
+    const { dispatch, switchEdit } = this.props;
     dispatch(editProfileFunction(userData));
+    switchEdit(false);
   }
 
 	render() {
-    const { isLoggedIn } = this.props.authentication;
-
-    if (!isLoggedIn) {
-        return(
-          <Redirect to='/login' />
-        )
-    }
-
 		return (
 			<ProfileEdit 
         profile = {this.props.profile} 

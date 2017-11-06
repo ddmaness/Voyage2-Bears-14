@@ -1,6 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Row } from 'reactstrap';
 
 export default class ProfileProjects extends React.Component {
   render() {
