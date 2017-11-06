@@ -1,6 +1,12 @@
 import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
 
+import Background from '../profile-edit/form-components/Background';
+import Skills from '../profile-edit/form-components/Skills';
+import Languages from '../profile-edit/form-components/Languages';
+import Timezone from '../profile-edit/form-components/Timezone';
+import InlineEdit from '../profile-edit/InlineProfileEditContainer'
+
 export default class ProfileInfo extends React.Component {
   render() {
     const { userAuth, userProfile } = this.props;
@@ -29,66 +35,38 @@ export default class ProfileInfo extends React.Component {
             }
           </Col>
         </Row>
-        <Row className="profile-info-section">
-          <Row className="profile-info-header justify-content-center">
-            <h3>
-              Background <small className="text-muted">A short description of your coding journey</small>
-            </h3>
-          </Row>
-          <Col>
-            {userProfile.background &&
-              <p className="profile-info-item">{userProfile.background}</p>
-            }
-            {!userProfile.background &&
-              <p className="profile-info-item"> Edit your profile to add this information.</p>
-            }
-          </Col>
-        </Row>
-        <Row className="profile-info-section">
-          <Row className="profile-info-header justify-content-center">
-            <h3>
-              Skills <small className="text-muted">Describe your current skillset to a potential project team.</small>
-            </h3>
-          </Row>
-          <Col>
-            {userProfile.skills[0] &&
-              <p className="profile-info-item">{userProfile.skills}</p>
-            }
-            {!userProfile.skills[0] &&
-              <p className="profile-info-item"> Edit your profile to add this information.</p>
-            }
-          </Col>
-        </Row>
-        <Row className="profile-info-section">
-          <Row className="profile-info-header justify-content-center">
-            <h3>
-              Languages <small className="text-muted">Languages you are comfortable using for projects</small>
-            </h3>
-          </Row>
-          <Col>
-            {userProfile.languages[0] &&
-              <p className="profile-info-item">{userProfile.languages}</p>
-            }
-            {!userProfile.languages[0] &&
-              <p className="profile-info-item"> Edit your profile to add this information</p>
-            }
-          </Col>
-        </Row>
-        <Row className="profile-info-section">
-          <Row className="profile-info-header justify-content-center">
-            <h3>
-              Timezone <small className="text-muted">Your current timezone setting</small>
-            </h3>
-          </Row>
-          <Col>
-            {userProfile.timezone &&
-              <p className="profile-info-item">{userProfile.timezone}</p>
-            }
-            {!userProfile.timezone &&
-              <p className="profile-info-item"> Edit your profile to add this information.</p>
-            }
-          </Col>
-        </Row>
+        <InlineEdit 
+        userAuth={this.props.userAuth}
+        userProfile={this.props.userProfile}
+        heading = 'Background'
+        description = 'A short description of your coding journey'
+        targetInfo = 'background'
+        Comp={Background}
+        />
+        <InlineEdit 
+        userAuth={this.props.userAuth}
+        userProfile={this.props.userProfile}
+        heading = 'Skills'
+        description = 'Describe your current skillset to a potential project team.'
+        targetInfo = 'skills'
+        Comp={Skills}
+        />
+        <InlineEdit 
+        userAuth={this.props.userAuth}
+        userProfile={this.props.userProfile}
+        heading = 'Languages'
+        description = 'Languages you are comfortable using for projects'
+        targetInfo = 'languages'
+        Comp={Languages}
+        />
+        <InlineEdit 
+        userAuth={this.props.userAuth}
+        userProfile={this.props.userProfile}
+        heading = 'Timezone'
+        description = 'Your current timezone setting'
+        targetInfo = 'timezone'
+        Comp={Timezone}
+        />
       </div>
     );
   }
