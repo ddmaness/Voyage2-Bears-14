@@ -1,13 +1,17 @@
 import 'whatwg-fetch';
 import { decrementProgress, incrementProgress } from './progress';
+import { clearError } from './error';
 
 export const editProfileSuccess = json => ({ type: 'EDIT_PROFILE_SUCCESS', json });
 export const editProfileFailure = error => ({ type: 'EDIT_PROFILE_FAILURE', error });
 
 export function editProfileFunction(userData) {
     return async(dispatch) => {
-    	//turn on spinner
-    	dispatch(incrementProgress());
+        // clear the error box if it's displayed
+        dispatch(clearError());
+        
+    	  //turn on spinner
+    	  dispatch(incrementProgress());
 	  
         // contact the API
         await fetch(

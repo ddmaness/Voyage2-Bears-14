@@ -23,7 +23,8 @@ router.post('/register', (req, res) => {
       username: req.body.username,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      email: req.body.email
+      email: req.body.email,
+      role: 'user'
     });
 
     // save user to db using Passport register method

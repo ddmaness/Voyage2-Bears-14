@@ -6,10 +6,6 @@ const initialState = {
     lastName: '',
     username: '',
     email: '',
-    background: '',
-    skills: '',
-    languages: '',
-    timezone: '',
     registrationSucceeded: false,
 };
 

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default class ProfileInfo extends React.Component {
 
   render() {
-    const { user } = this.props;
+    const { userAuth, userProfile } = this.props;
 
     return(
       <div>
@@ -16,17 +16,17 @@ export default class ProfileInfo extends React.Component {
             </h3>
           </Row>
           <Col>
-            {user.firstName &&
-              <p className="profile-info-item">{user.firstName}</p>
+            {userAuth.firstName &&
+              <p className="profile-info-item">{userAuth.firstName}</p>
             }
-            {user.lastName &&
-              <p className="profile-info-item">{user.lastName}</p>
+            {userAuth.lastName &&
+              <p className="profile-info-item">{userAuth.lastName}</p>
             }
-            {user.username &&
-              <p className="profile-info-item">{user.username}</p>
+            {userAuth.username &&
+              <p className="profile-info-item">{userAuth.username}</p>
             }
-            {user.email &&
-              <p className="profile-info-item">{user.email}</p>
+            {userAuth.email &&
+              <p className="profile-info-item">{userAuth.email}</p>
             }
           </Col>
         </Row>
@@ -37,10 +37,10 @@ export default class ProfileInfo extends React.Component {
             </h3>
           </Row>
           <Col>
-            {user.background &&
-              <p className="profile-info-item">{user.background}</p>
+            {userProfile.background &&
+              <p className="profile-info-item">{userProfile.background}</p>
             }
-            {!user.background &&
+            {!userProfile.background &&
               <p className="profile-info-item"> Edit your profile to add this information.</p>
             }
           </Col>
@@ -52,10 +52,10 @@ export default class ProfileInfo extends React.Component {
             </h3>
           </Row>
           <Col>
-            {user.skills[0] &&
-              <p className="profile-info-item">{user.skills}</p>
+            {userProfile.skills[0] &&
+              <p className="profile-info-item">{userProfile.skills}</p>
             }
-            {!user.skills[0] &&
+            {!userProfile.skills[0] &&
               <p className="profile-info-item"> Edit your profile to add this information.</p>
             }
           </Col>
@@ -67,10 +67,10 @@ export default class ProfileInfo extends React.Component {
             </h3>
           </Row>
           <Col>
-            {user.languages[0] &&
-              <p className="profile-info-item">{user.languages}</p>
+            {userProfile.languages[0] &&
+              <p className="profile-info-item">{userProfile.languages}</p>
             }
-            {!user.languages[0] &&
+            {!userProfile.languages[0] &&
               <p className="profile-info-item"> Edit your profile to add this information</p>
             }
           </Col>
@@ -82,10 +82,10 @@ export default class ProfileInfo extends React.Component {
             </h3>
           </Row>
           <Col>
-            {user.timezone &&
-              <p className="profile-info-item">{user.timezone}</p>
+            {userProfile.timezone &&
+              <p className="profile-info-item">{userProfile.timezone}</p>
             }
-            {!user.timezone &&
+            {!userProfile.timezone &&
               <p className="profile-info-item"> Edit your profile to add this information.</p>
             }
           </Col>

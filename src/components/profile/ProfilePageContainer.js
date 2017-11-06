@@ -6,7 +6,7 @@ import ProfilePage from './ProfilePage';
 
 export class ProfilePageContainer extends React.Component {
   render() {
-      const { authentication } = this.props;
+      const { authentication, profile } = this.props;
 
       if (!authentication.isLoggedIn) {
           return(
@@ -14,7 +14,7 @@ export class ProfilePageContainer extends React.Component {
           )
       }
       return (
-        <ProfilePage user={authentication}/>
+        <ProfilePage userAuth={authentication} userProfile={profile}/>
       );
   }
 }
@@ -22,6 +22,7 @@ export class ProfilePageContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     authentication: state.authentication,
+    profile: state.profile,
   };
 }
   

@@ -9,7 +9,8 @@ mongoose.Promise = global.Promise;
 
 
 // POST method to edit user profile at /profile
-router.post('/edit-profile', (req, res) => {
+router.route('/edit-profile')
+  .post((req, res) => {
     // Find user in DB return err if not found
     const query = { _id: req.body.id }
     const profileData = {

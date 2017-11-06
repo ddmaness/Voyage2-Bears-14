@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 import './ProfilePage.css';
 import avatar from './profile-placeholder.png';
 
-import ProfileEdit from './ProfileEditContainer';
-import ProfileInfo from './ProfileInfo';
+import ProfileEdit from './profile-edit/ProfileEditContainer';
+import ProfileInfo from './profile-info/ProfileInfo';
+import ProfileProjects from './profile-projects/ProfileProjectsContainer';
 
 export default class ProfilePage extends React.Component {
   constructor(props){
@@ -32,7 +33,7 @@ export default class ProfilePage extends React.Component {
       <Container>
         <Jumbotron>
           <Row className="justify-content-center">
-            <h1>{this.props.user.firstName} {this.props.user.lastName}</h1>
+            <h1>{this.props.userAuth.firstName} {this.props.userAuth.lastName}</h1>
           </Row>
           <Row className="justify-content-center">
             <img src={avatar} alt="Avatar placeholder" />
@@ -44,9 +45,19 @@ export default class ProfilePage extends React.Component {
               className={classnames({ active: this.state.activeTab === 'profile' })}
               onClick={() => { this.toggle('profile'); }}
               tag={Link}
-              to={`/${this.props.user.username}/profile`}
+              to={`/${this.props.userAuth.username}/profile`}
             >
               Profile
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === 'projects' })}
+              onClick={() => { this.toggle('projects'); }}
+              tag={Link}
+              to={`/${this.props.userAuth.username}/projects`}
+            >
+              Projects
             </NavLink>
           </NavItem>
           <NavItem>
@@ -54,7 +65,7 @@ export default class ProfilePage extends React.Component {
               className={classnames({ active: this.state.activeTab === 'settings' })}
               onClick={() => { this.toggle('settings'); }}
               tag={Link}
-              to={`/${this.props.user.username}/settings`}
+              to={`/${this.props.userAuth.username}/settings`}
             >
               Settings
             </NavLink>
@@ -62,7 +73,10 @@ export default class ProfilePage extends React.Component {
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="profile">
-            <ProfileInfo user={this.props.user} />
+            <ProfileInfo userAuth={this.props.userAuth} userProfile={this.props.userProfile}/>
+          </TabPane>
+          <TabPane tabId="projects">
+            <ProfileProjects />
           </TabPane>
           <TabPane tabId="settings">
             <Row>
