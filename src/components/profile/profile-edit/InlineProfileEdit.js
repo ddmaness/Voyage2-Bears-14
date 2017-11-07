@@ -13,7 +13,7 @@ class EditProfile extends React.Component {
 		this.state = {
 			id: this.props.userAuth.id,
 			isEditing: false,
-			targetInfo: userProfile[targetInfo],
+			[targetInfo]: userProfile[targetInfo],
 		}
 
 		//bound functions
@@ -57,7 +57,9 @@ class EditProfile extends React.Component {
                     userAuth = {userAuth}
                     userProfile = {userProfile}
                     editProfile = {editProfile}
-                    toggleEdit = {this.toggleEdit}
+					toggleEdit = {this.toggleEdit}
+					targetInfo = {targetInfo}
+					heading = {heading}
                 />
 			)
 		}

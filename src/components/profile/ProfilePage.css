@@ -24,6 +24,10 @@ Buttons
 ================================================
 */
 
+.list {
+  margin-bottom: 16px;
+}
+
 .edit, .cancel {
   margin-left: 24px;
 }

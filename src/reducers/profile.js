@@ -1,7 +1,7 @@
 const initialState = {
 	background: '',
-	skills: '',
-	languages: '',
+	skills: [],
+	languages: [],
 	timezone: '',
 }
 

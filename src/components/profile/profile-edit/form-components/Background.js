@@ -29,7 +29,7 @@ class EditBackground extends React.Component {
 							id="background"
 							name="background"
 							onChange={this.handleInputChange}
-							onKeyPress={this.handleKeyPress}
+							onKeyPress={(e) => this.handleKeyPress(null, null, null, e)}
 							placeholder="Describe your background"
 							type="textarea"
 							value={this.state.background}
