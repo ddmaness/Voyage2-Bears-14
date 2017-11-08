@@ -1,13 +1,15 @@
 // Put everything together and send it up to the register function
-function compileFormData( func ) {
+function compileFormData() {
+    const { editProfile } = this.props;
     const formData = this.state;
-    this.props.func(formData);
+    editProfile(formData);
+    this.props.toggleEdit();
 }
 
 // Handle input changes
 function handleInputChange(e) {
     this.setState({ [e.currentTarget.id]: e.target.value });
-    console.log(this.state);
+    console.log(this.state)
 }
 
 // catch enter clicks
