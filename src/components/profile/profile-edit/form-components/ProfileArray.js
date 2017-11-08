@@ -28,11 +28,13 @@ class EditProfileArray extends React.Component {
   render(){
 	  	const { currentInput } = this.state;
 		const { toggleEdit, heading, description, userAuth, userProfile, targetInfo, placeholder } = this.props;
+
+		// iterate through elements in the state array and display them as list items
 		let listItems = this.state[targetInfo].map((elem, index) => {
 			 return (
 				 <ListItem
 					 item = {elem}
-					 key = {targetInfo + index}
+					 key = {index}
 					 deleteListItem = {() => this.deleteListItem(this.state[targetInfo], targetInfo, index)}
 				/>
 			 )

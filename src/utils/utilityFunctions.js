@@ -53,4 +53,14 @@ function deleteListItem(arr, key, index) {
     this.setState({ [key]: arrCopy }); 
 }
 
-export { compileFormData, handleInputChange, handleKeyPress, pushToArray, deleteListItem };
+// check if argument is an array and if so format it for display
+function formatArray(item) {
+    if (Array.isArray(item)) {
+        return item.join(', ');
+    }
+    else {
+        return item;
+    }
+}
+
+export { compileFormData, handleInputChange, handleKeyPress, pushToArray, deleteListItem, formatArray };

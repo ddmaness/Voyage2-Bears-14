@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, FormGroup, Row, Col, Label, Button, Input } from 'reactstrap';
 
-import { compileFormData, handleInputChange, handleKeyPress } from '../../../utils/utilityFunctions';
+import { compileFormData, handleInputChange, handleKeyPress, formatArray } from '../../../utils/utilityFunctions';
 
 
 class EditProfile extends React.Component {
@@ -21,7 +21,6 @@ class EditProfile extends React.Component {
 		this.handleInputChange = handleInputChange.bind(this);
 		this.handleKeyPress = handleKeyPress.bind(this);
 		this.toggleEdit = this.toggleEdit.bind(this);
-
 	}
 
 	toggleEdit() {
@@ -32,14 +31,14 @@ class EditProfile extends React.Component {
 		const { editProfile, Comp, targetInfo, heading, description, userAuth, userProfile } = this.props;
 		const { isEditing } = this.state;
 		const itemForDisplay = userProfile[targetInfo]
-		const profileDisplay = (function (item) {
-			if (Array.isArray(item)) {
-				return item.join(', ');
-			}
-			else {
-				return item;
-			}
-		})(itemForDisplay);
+		const profileDisplay = formatArray(itemForDisplay);
+
+		// check to see if a "timezone" prop was passed and prepare a string for formating if true
+		let timezone = '';
+		if (targetInfo == 'timezone') {
+			timezone = 'GMT ';
+		}
+
 		if (isEditing === false) {
     	return (
 				<Row className="profile-info-section">
@@ -51,7 +50,7 @@ class EditProfile extends React.Component {
 					</Row>
 					<Col>
 						{userProfile[targetInfo] &&
-							<p className="profile-info-item">{profileDisplay}</p>
+							<p className="profile-info-item">{timezone}{profileDisplay}</p>
 						}
 						{!userProfile[targetInfo] &&
 							<p className="profile-info-item">Edit your profile to add this information.</p>
@@ -61,6 +60,7 @@ class EditProfile extends React.Component {
 			)
 		}
 		else {
+			// when edit button is pressed bring up the corresponding form field component
 			return (
                 <Comp 
                     userAuth = {userAuth}

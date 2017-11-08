@@ -19,7 +19,8 @@ export default function reducer(state=initialState, action) {
 			//TODO error message
 			return state;
 		}
-		case 'AUTHENTICATION_LOGIN_SUCCESS': {
+		case 'AUTHENTICATION_LOGIN_SUCCESS':
+		case 'AUTHENTICATION_SESSION_CHECK_SUCCESS': {
 			const newState = Object.assign({}, state);
 			newState.background = action.json.background;
 			newState.skills = action.json.skills;
