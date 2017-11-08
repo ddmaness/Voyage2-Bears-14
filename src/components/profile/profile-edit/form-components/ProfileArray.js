@@ -32,7 +32,7 @@ class EditProfileArray extends React.Component {
 			 return (
 				 <ListItem
 					 item = {elem}
-					 index = {index}
+					 key = {targetInfo + index}
 					 deleteListItem = {() => this.deleteListItem(this.state[targetInfo], targetInfo, index)}
 				/>
 			 )

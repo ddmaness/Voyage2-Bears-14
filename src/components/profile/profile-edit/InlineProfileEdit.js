@@ -30,7 +30,16 @@ class EditProfile extends React.Component {
 
   render(){
 		const { editProfile, Comp, targetInfo, heading, description, userAuth, userProfile } = this.props;
-        const { isEditing } = this.state;
+		const { isEditing } = this.state;
+		const itemForDisplay = userProfile[targetInfo]
+		const profileDisplay = (function (item) {
+			if (Array.isArray(item)) {
+				return item.join(', ');
+			}
+			else {
+				return item;
+			}
+		})(itemForDisplay);
 		if (isEditing === false) {
     	return (
 				<Row className="profile-info-section">
@@ -42,7 +51,7 @@ class EditProfile extends React.Component {
 					</Row>
 					<Col>
 						{userProfile[targetInfo] &&
-							<p className="profile-info-item">{userProfile[targetInfo]}</p>
+							<p className="profile-info-item">{profileDisplay}</p>
 						}
 						{!userProfile[targetInfo] &&
 							<p className="profile-info-item">Edit your profile to add this information.</p>
