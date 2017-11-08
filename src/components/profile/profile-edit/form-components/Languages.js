@@ -23,20 +23,21 @@ class EditLanguages extends React.Component {
 		const { toggleEdit, heading, description, userAuth, userProfile } = this.props;
 		return (
 			<Form>
-				<FormGroup row>
-					<Label for="languages">Languages</Label>
-						<Input
-							id="languages"
-							name="languages"
-							onChange={this.handleInputChange}
-							onKeyPress={this.handleKeyPress}
-							placeholder="Add languages that you speak"
-							type="textarea"
-							value={this.state.languages}
-					/>
-				</FormGroup>
-				<Button outline color = "primary" onClick={this.compileFormData}>Save Changes</ Button>
-				<Button className = "cancel" onClick = {toggleEdit}>Cancel</Button>
+        <FormGroup row className="justify-content-center">
+          <Input
+            id="languages"
+            name="languages"
+            onChange={this.handleInputChange}
+            onKeyPress={this.handleKeyPress}
+            placeholder="Add languages that you speak"
+            type="textarea"
+            value={this.state.languages}
+          />
+        </FormGroup>
+        <FormGroup row className="justify-content-center">
+          <Button outline color="primary" onClick={this.compileFormData}>Save Changes</Button>
+          <Button outline color="danger" className="ml-3" onClick = {toggleEdit}>Cancel</Button>
+        </FormGroup>
 			</Form>
 		)
 	}

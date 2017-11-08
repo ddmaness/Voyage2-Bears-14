@@ -18,9 +18,9 @@ class EditProfileContainer extends React.Component {
   }
 
 	render() {
-        const { Comp, heading, description, targetInfo, userAuth, userProfile } = this.props;
+    const { Comp, heading, description, targetInfo, userAuth, userProfile } = this.props;
 		return (
-            <ProfileEdit
+      <ProfileEdit
         Comp = {Comp}
         heading = {heading}
         description = {description}

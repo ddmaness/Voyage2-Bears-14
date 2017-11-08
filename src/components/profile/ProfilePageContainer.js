@@ -30,12 +30,12 @@ export class ProfilePageContainer extends React.Component {
       );
     }
     return(
-        <ProfilePage 
-          userAuth={authentication}
-          userProfile={profile}
-          switchEdit={this.switchToEdit}
-          isEditing={this.state.isEditing}
-        />
+      <ProfilePage 
+        userAuth={authentication}
+        userProfile={profile}
+        switchEdit={this.switchToEdit}
+        isEditing={this.state.isEditing}
+      />
     );
   }
 }

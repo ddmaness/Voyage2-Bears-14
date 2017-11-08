@@ -23,20 +23,21 @@ class EditBackground extends React.Component {
 		const { toggleEdit, heading, description, userAuth, userProfile } = this.props;
 		return (
 			<Form>
-				<FormGroup row>
-					<Label for="background">Background</Label>
-						<Input
-							id="background"
-							name="background"
-							onChange={this.handleInputChange}
-							onKeyPress={this.handleKeyPress}
-							placeholder="Describe your background"
-							type="textarea"
-							value={this.state.background}
-					/>
-				</FormGroup>
-				<Button outline color = "primary" onClick={this.compileFormData}>Save Changes</ Button>
-				<Button className = "cancel" onClick = {toggleEdit}>Cancel</Button>
+				<FormGroup row className="justify-content-center">
+          <Input
+            id="background"
+            name="background"
+            onChange={this.handleInputChange}
+            onKeyPress={this.handleKeyPress}
+            placeholder="Describe your background"
+            type="textarea"
+            value={this.state.background}
+          />
+        </FormGroup>
+        <FormGroup row className="justify-content-center">
+          <Button outline color="primary" onClick={this.compileFormData}>Save Changes</Button>
+          <Button outline className="ml-3" color="danger" onClick = {toggleEdit}>Cancel</Button>
+        </FormGroup>
 			</Form>
 		)
 	}

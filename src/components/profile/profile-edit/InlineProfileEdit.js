@@ -28,39 +28,50 @@ class EditProfile extends React.Component {
 		this.setState({isEditing: !this.state.isEditing})
 	}
 
-  render(){
+  render() {
 		const { editProfile, Comp, targetInfo, heading, description, userAuth, userProfile } = this.props;
-        const { isEditing } = this.state;
-		if (isEditing === false) {
-    	return (
-				<Row className="profile-info-section">
-					<Row className="profile-info-header justify-content-center">
-						<h3>
-							{heading} <small className="text-muted">{description}</small>
-						</h3>
-						<Button outline color="primary" className = "edit" onClick = {this.toggleEdit}>Edit</Button>
-					</Row>
-					<Col>
-						{userProfile[targetInfo] &&
-							<p className="profile-info-item">{userProfile[targetInfo]}</p>
-						}
-						{!userProfile[targetInfo] &&
-							<p className="profile-info-item">Edit your profile to add this information.</p>
-						}
-					</Col>
-				</Row>
-			)
-		}
-		else {
-			return (
-                <Comp 
-                    userAuth = {userAuth}
-                    userProfile = {userProfile}
-                    editProfile = {editProfile}
-                    toggleEdit = {this.toggleEdit}
-                />
-			)
-		}
+    const { isEditing } = this.state;
+
+    return(
+      <div>
+        {!isEditing &&
+          <Row className="profile-info-section">
+            <Row className="profile-info-header justify-content-center">
+              <h3>
+                {heading} <small className="text-muted">{description}</small>
+              </h3>
+              <Button outline color="primary" className = "edit" onClick = {this.toggleEdit}>Edit</Button>
+            </Row>
+            <Col>
+              {userProfile[targetInfo] &&
+                <p className="profile-info-item">{userProfile[targetInfo]}</p>
+              }
+              {!userProfile[targetInfo] &&
+                <p className="profile-info-item">Edit your profile to add this information.</p>
+              }
+            </Col>
+          </Row>
+        }
+        {isEditing && 
+          <Row className="profile-info-section">
+            <Row className="profile-info-header justify-content-center">
+              <h3>
+                {heading} <small className="text-muted">{description}</small>
+              </h3>
+            </Row>
+            <Col>
+              <Comp 
+                userAuth = {userAuth}
+                userProfile = {userProfile}
+                editProfile = {editProfile}
+                toggleEdit = {this.toggleEdit}
+                className = "profile-info-item"
+              />
+            </Col>
+          </Row>
+        }
+      </div>
+    )
   }
 }
 
