@@ -1,7 +1,8 @@
 // Put everything together and send it up to the register function
 function compileFormData() {
-    const { editProfile } = this.props;
+    const { editProfile, targetInfo } = this.props;
     const formData = this.state;
+    formData.targetKey = targetInfo
     if (formData.hasOwnProperty('currentInput')) {
         delete formData.currentInput;
     }
@@ -18,7 +19,6 @@ function handleInputChange(e) {
     else {
         this.setState({ currentInput: e.target.value })
     } 
-    console.log(this.state)
 }
 
 // catch enter clicks

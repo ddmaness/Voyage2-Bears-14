@@ -7,6 +7,7 @@ export const editProfileFailure = error => ({ type: 'EDIT_PROFILE_FAILURE', erro
 
 export function editProfileFunction(userData) {
     return async(dispatch) => {
+        console.log(JSON.stringify(userData))
         // clear the error box if it's displayed
         dispatch(clearError());
         
@@ -33,11 +34,11 @@ export function editProfileFunction(userData) {
         	}
         	return null;
       		})
-      		.then((json) => {
+      		.then(async (json) => {
         	if (json) {
-            	dispatch(editProfileSuccess(json));
+            	await dispatch(editProfileSuccess(json));
         	} else {
-            	dispatch(editProfileFailure(new Error('Failed To Update Profile')));
+            	await dispatch(editProfileFailure(new Error('Failed To Update Profile')));
             }
         })
         .catch((error) => {
