@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Row, Col, Label, Button, Input } from 'reactstrap';
+import { Form, FormGroup, Label, Button, Input } from 'reactstrap';
 
 import { compileFormData, handleInputChange, handleKeyPress } from '../../../../utils/utilityFunctions';
 
@@ -20,7 +20,7 @@ class EditTimezone extends React.Component {
 	}
 
   render(){
-		const { toggleEdit, heading, description, userAuth, userProfile } = this.props;
+		const { toggleEdit } = this.props;
 		return (
 			<Form>
                 <FormGroup row>

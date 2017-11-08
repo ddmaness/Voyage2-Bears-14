@@ -35,16 +35,16 @@ export default class ProfileInfo extends React.Component {
           </Col>
         </Row>
         <InlineEdit 
-        userAuth={this.props.userAuth}
-        userProfile={this.props.userProfile}
+        userAuth={userAuth}
+        userProfile={userProfile}
         heading = 'Background'
         description = 'A short description of your coding journey'
         targetInfo = 'background'
         Comp={Background}
         />
         <InlineEdit 
-        userAuth={this.props.userAuth}
-        userProfile={this.props.userProfile}
+        userAuth={userAuth}
+        userProfile={userProfile}
         heading = 'Skills'
         description = 'Describe your current skillset to a potential project team.'
         targetInfo = 'skills'
@@ -52,8 +52,8 @@ export default class ProfileInfo extends React.Component {
         Comp={ProfileArray}
         />
         <InlineEdit 
-        userAuth={this.props.userAuth}
-        userProfile={this.props.userProfile}
+        userAuth={userAuth}
+        userProfile={userProfile}
         heading = 'Languages'
         description = 'Languages you are comfortable using for projects'
         targetInfo = 'languages'
@@ -61,8 +61,8 @@ export default class ProfileInfo extends React.Component {
         Comp={ProfileArray}
         />
         <InlineEdit 
-        userAuth={this.props.userAuth}
-        userProfile={this.props.userProfile}
+        userAuth={userAuth}
+        userProfile={userProfile}
         heading = 'Timezone'
         description = 'Your current timezone setting'
         targetInfo = 'timezone'

@@ -29,9 +29,9 @@ function handleKeyPress(elem, arr, key, target) {
             this.compileFormData();
         }
         else {
-            if (this.state.currentInput.trim() != '') {
-                pushToArray = this.pushToArray.bind(this);
-                pushToArray(elem, arr, key, target)
+            if (this.state.currentInput.trim() !== '') {
+                let pushToArr = this.pushToArray.bind(this);
+                pushToArr(elem, arr, key, target)
             }
         }
     }
@@ -40,7 +40,7 @@ function handleKeyPress(elem, arr, key, target) {
 // push new value onto array in state
 function pushToArray(elem, arr, key, e) {
     let arrCopy = arr.slice();
-    if (elem.trim() != ''){
+    if (elem.trim() !== ''){
         arrCopy.push(elem);
         this.setState({ [key]: arrCopy, currentInput: ''});
     }

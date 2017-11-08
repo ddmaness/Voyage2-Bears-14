@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Row, Col, Label, Button, Input } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
 
 import { compileFormData, handleInputChange, handleKeyPress, formatArray } from '../../../utils/utilityFunctions';
 
@@ -35,7 +35,7 @@ class EditProfile extends React.Component {
 
 		// check to see if a "timezone" prop was passed and prepare a string for formating if true
 		let timezone = '';
-		if (targetInfo == 'timezone') {
+		if (targetInfo === 'timezone') {
 			timezone = 'GMT ';
 		}
 

@@ -2,9 +2,6 @@ import React from 'react';
 import { Button } from 'reactstrap';
 
 class ListItem extends React.Component {
-    constructor(){
-        super();
-    }
     render(){
         return (
             <li className = "list-group-item">

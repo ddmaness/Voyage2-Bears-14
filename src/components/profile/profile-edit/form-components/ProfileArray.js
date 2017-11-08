@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Row, Col, Label, Button, Input } from 'reactstrap';
+import { Form, FormGroup, Label, Button, Input } from 'reactstrap';
 
 import { compileFormData, handleInputChange, handleKeyPress, pushToArray, deleteListItem } from '../../../../utils/utilityFunctions';
 import ListItem from './ListItem';
@@ -27,7 +27,7 @@ class EditProfileArray extends React.Component {
 
   render(){
 	  	const { currentInput } = this.state;
-		const { toggleEdit, heading, description, userAuth, userProfile, targetInfo, placeholder } = this.props;
+		const { toggleEdit, heading, targetInfo, placeholder } = this.props;
 
 		// iterate through elements in the state array and display them as list items
 		let listItems = this.state[targetInfo].map((elem, index) => {
