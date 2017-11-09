@@ -15,16 +15,12 @@ router.route('/edit-profile')
     const query = { _id: req.body.id }
     const profileData = {
         $set: {
-        background: req.body.background,
-        timezone: req.body.timezone,
-        'skills.0': req.body.skills,
-        'languages.0': req.body.languages,
+        [req.body.targetKey]: req.body[req.body.targetKey],
         },
     }
-    User.updateOne(query, profileData)
-    .then(function(result) {
-        console.log(JSON.stringify(req.user));
-        return res.send(JSON.stringify(req.user));
+    User.findOneAndUpdate(query, profileData, {new: true}, function(err, doc) {
+        console.log(JSON.stringify(doc));
+        return res.send(JSON.stringify(doc));
     });
 });
 

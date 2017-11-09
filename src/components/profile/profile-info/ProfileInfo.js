@@ -2,8 +2,7 @@ import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
 
 import Background from '../profile-edit/form-components/Background';
-import Skills from '../profile-edit/form-components/Skills';
-import Languages from '../profile-edit/form-components/Languages';
+import ProfileArray from '../profile-edit/form-components/ProfileArray';
 import Timezone from '../profile-edit/form-components/Timezone';
 import InlineEdit from '../profile-edit/InlineProfileEditContainer'
 
@@ -35,6 +34,7 @@ export default class ProfileInfo extends React.Component {
           </Col>
         </Row>
         <InlineEdit 
+<<<<<<< HEAD
           userAuth={this.props.userAuth}
           userProfile={this.props.userProfile}
           heading = 'Background'
@@ -65,6 +65,40 @@ export default class ProfileInfo extends React.Component {
           description = 'Your current timezone setting'
           targetInfo = 'timezone'
           Comp={Timezone}
+=======
+        userAuth={userAuth}
+        userProfile={userProfile}
+        heading = 'Background'
+        description = 'A short description of your coding journey'
+        targetInfo = 'background'
+        Comp={Background}
+        />
+        <InlineEdit 
+        userAuth={userAuth}
+        userProfile={userProfile}
+        heading = 'Skills'
+        description = 'Describe your current skillset to a potential project team.'
+        targetInfo = 'skills'
+        placeholder = 'Add your relevant skills'
+        Comp={ProfileArray}
+        />
+        <InlineEdit 
+        userAuth={userAuth}
+        userProfile={userProfile}
+        heading = 'Languages'
+        description = 'Languages you are comfortable using for projects'
+        targetInfo = 'languages'
+        placeholder = 'Add languages you are comfortable with here'
+        Comp={ProfileArray}
+        />
+        <InlineEdit 
+        userAuth={userAuth}
+        userProfile={userProfile}
+        heading = 'Timezone'
+        description = 'Your current timezone setting'
+        targetInfo = 'timezone'
+        Comp={Timezone}
+>>>>>>> bc95dacb61aae8ef8367e5c5f8dcc38ce5593b36
         />
       </div>
     );
