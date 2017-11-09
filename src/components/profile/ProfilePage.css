@@ -25,14 +25,10 @@ Buttons
 ================================================
 */
 
-<<<<<<< HEAD
-.edit {
-=======
 .list {
   margin-bottom: 16px;
 }
 
 .edit, .cancel {
->>>>>>> bc95dacb61aae8ef8367e5c5f8dcc38ce5593b36
   margin-left: 24px;
 }

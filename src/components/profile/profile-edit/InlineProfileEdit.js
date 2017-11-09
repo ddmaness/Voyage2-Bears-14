@@ -29,50 +29,6 @@ class EditProfile extends React.Component {
 
   render() {
 		const { editProfile, Comp, targetInfo, heading, description, userAuth, userProfile } = this.props;
-<<<<<<< HEAD
-    const { isEditing } = this.state;
-
-    return(
-      <div>
-        {!isEditing &&
-          <Row className="profile-info-section">
-            <Row className="profile-info-header justify-content-center">
-              <h3>
-                {heading} <small className="text-muted">{description}</small>
-              </h3>
-              <Button outline color="primary" className = "edit" onClick = {this.toggleEdit}>Edit</Button>
-            </Row>
-            <Col>
-              {userProfile[targetInfo] &&
-                <p className="profile-info-item">{userProfile[targetInfo]}</p>
-              }
-              {!userProfile[targetInfo] &&
-                <p className="profile-info-item">Edit your profile to add this information.</p>
-              }
-            </Col>
-          </Row>
-        }
-        {isEditing && 
-          <Row className="profile-info-section">
-            <Row className="profile-info-header justify-content-center">
-              <h3>
-                {heading} <small className="text-muted">{description}</small>
-              </h3>
-            </Row>
-            <Col>
-              <Comp 
-                userAuth = {userAuth}
-                userProfile = {userProfile}
-                editProfile = {editProfile}
-                toggleEdit = {this.toggleEdit}
-                className = "profile-info-item"
-              />
-            </Col>
-          </Row>
-        }
-      </div>
-    )
-=======
 		const { isEditing } = this.state;
 		const itemForDisplay = userProfile[targetInfo]
 		const profileDisplay = formatArray(itemForDisplay);
@@ -116,7 +72,6 @@ class EditProfile extends React.Component {
                 />
 			)
 		}
->>>>>>> bc95dacb61aae8ef8367e5c5f8dcc38ce5593b36
   }
 }
 
