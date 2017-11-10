@@ -9,6 +9,7 @@ import avatar from './profile-placeholder.png';
 import ProfileEdit from './profile-edit/ProfileEditContainer';
 import ProfileInfo from './profile-info/ProfileInfo';
 import ProfileProjects from './profile-projects/ProfileProjectsContainer';
+import NavFooter from '../shared/footer/NavFooterContainer'
 
 export default class ProfilePage extends React.Component {
   constructor(props){
@@ -96,6 +97,7 @@ export default class ProfilePage extends React.Component {
             </Row>
           </TabPane>
         </TabContent>
+        <NavFooter/>
       </Container>
     )
   }

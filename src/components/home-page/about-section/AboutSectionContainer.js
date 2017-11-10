@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 import AboutSection from './AboutSection';
 
 class AboutSectionContainer extends React.Component {
-  constructor(props){
-    super(props);
-	}
 	
   render(){
   	return(

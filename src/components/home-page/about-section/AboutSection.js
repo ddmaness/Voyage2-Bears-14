@@ -3,17 +3,14 @@ import { Jumbotron, Container, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 class AboutSection extends React.Component{
-  constructor(props) {
-    super(props)
-  }
-
+  
   render(){
     return (
-      <div>
+      <div id = "about">
         <Jumbotron fluid>
           <Container fluid className = "text-center">
             <h3>Our Purpose</h3>
-            <p className="lead">Our purpose is to help developers connect and complete "hackathon" style build-to-learn projects.</p>
+            <p className="lead">Our purpose is to help developers connect in order to complete remote, "hackathon" style, build-to-learn projects.</p>
             {!this.props.userAuth.isLoggedIn &&
               <div>
                 <hr/>
