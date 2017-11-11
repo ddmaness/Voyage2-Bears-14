@@ -15,6 +15,7 @@ import Header from './shared/header/HeaderContainer';
 import Footer from './shared/footer/Footer';
 import SignUpSuccess from './account/SignUpSuccessContainer';
 import ProfilePage from './profile/ProfilePageContainer';
+import ProfileCreateProject from './profile/profile-projects/profile-create-project/ProfileCreateProjectContainer';
 
 import './App.css';
 
@@ -31,11 +32,13 @@ export default function App(props) {
             <Switch>
               <Route exact path='/' component={HomePage} />
               <Route exact path='/projects' component={ProjectListPage} />
-              <Route path='/projects/:id' component={ProjectPage} />
+              <Route path='/projects/:projectName' component={ProjectPage} />
               <Route exact path='/sign-up' component={SignUp} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/sign-up-success' component={SignUpSuccess} />
-              <Route path={`/${authentication.username}`} component={ProfilePage} />
+              <Route exact path={`/${authentication.username}`} component={ProfilePage} />
+              <Route exact path={`/${authentication.username}/:tabName`} component={ProfilePage} />
+              <Route exact path={`/${authentication.username}/projects/new`} component={ProfileCreateProject} />
             </Switch>
         </section>
         <div className="loader-wrapper" style={progress > 0 ? { display: 'block' } : { display: 'none' }}>

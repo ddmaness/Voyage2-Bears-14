@@ -13,7 +13,7 @@ export class ProfileProjectsContainer extends React.Component {
   }
 
   render() {
-      const { authentication, projects } = this.props;
+      const { authentication, projects, userAuth } = this.props;
 
       if (!authentication.isLoggedIn) {
           return(
@@ -22,7 +22,7 @@ export class ProfileProjectsContainer extends React.Component {
       }
       return (
         <div>
-          <ProfileProjects title="Created:" projects={projects.userCreatedProjects}/>
+          <ProfileProjects userAuth={userAuth} title="Created:" projects={projects.userCreatedProjects}/>
           <ProfileProjects title="Member Of:" projects={projects.userMemberProjects}/>
         </div>
       );
@@ -37,5 +37,3 @@ function mapStateToProps(state) {
 }
   
 export default connect(mapStateToProps)(ProfileProjectsContainer);
-
-// TODO - ADD LOGIC FOR HANDLING STATE UPDATES BASED ON PROJECT EDITS AND INTEGRATE EDIT COMPONENT AND PROJECT CREATION

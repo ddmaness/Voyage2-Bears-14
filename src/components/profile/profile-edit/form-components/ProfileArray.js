@@ -26,44 +26,46 @@ class EditProfileArray extends React.Component {
 	}
 
   render(){
-	  	const { currentInput } = this.state;
+	  const { currentInput } = this.state;
 		const { toggleEdit, heading, targetInfo, placeholder } = this.props;
 
+    console.log(this.state[targetInfo]);
 		// iterate through elements in the state array and display them as list items
 		let listItems = this.state[targetInfo].map((elem, index) => {
-			 return (
-				 <ListItem
-					 item = {elem}
-					 key = {index}
-					 deleteListItem = {() => this.deleteListItem(this.state[targetInfo], targetInfo, index)}
-				/>
-			 )
+      return (
+        <ListItem
+          item = {elem}
+          key = {index}
+          deleteListItem = {() => this.deleteListItem(this.state[targetInfo], targetInfo, index)}
+        />
+      )
 		})
 
 		return (
 			<Form>
 				<FormGroup row>
 					<Label for={targetInfo}>{heading}</Label>
-						<Input
-							id={targetInfo}
-							name={targetInfo}
-							onChange={this.handleInputChange}
-							onKeyPress={(e) => this.handleKeyPress(currentInput, this.state[targetInfo], targetInfo, e)}
-							placeholder={placeholder}
-							value={this.state.currentInput}
-					/>
+          <Input
+            id={targetInfo}
+            name={targetInfo}
+            onChange={this.handleInputChange}
+            onKeyPress={(e) => this.handleKeyPress(currentInput, this.state[targetInfo], targetInfo, e)}
+            placeholder={placeholder}
+            value={this.state.currentInput}
+          />
 				</FormGroup>
 				<Button 
-				className = "list" 
-				outline color = "primary" 
-				onClick= {(e) => this.pushToArray(currentInput, this.state[targetInfo], targetInfo, e)}>
-				Add
+          className = "list" 
+          outline color = "primary" 
+          onClick= {(e) => this.pushToArray(currentInput, this.state[targetInfo], targetInfo, e)}
+        >
+          Add
 				</Button>
 				<br/>
 				<ul>
 				{listItems}
 				</ul>
-				<Button className="list" outline color = "primary" onClick={this.compileFormData}>Save Changes</ Button>
+				<Button className="list" outline color = "primary" onClick={this.compileFormData}>Save Changes</Button>
 				<Button className = "list cancel" onClick = {toggleEdit}>Cancel</Button>
 			</Form>
 		)

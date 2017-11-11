@@ -13,7 +13,7 @@ class EditProfileContainer extends React.Component {
 	}
 	
   editProfile(userData) {
-    const { dispatch, switchEdit } = this.props;
+    const { dispatch } = this.props;
     dispatch(editProfileFunction(userData));
   }
 

@@ -62,14 +62,14 @@ class EditProfile extends React.Component {
 		else {
 			// when edit button is pressed bring up the corresponding form field component
 			return (
-                <Comp 
-                    userAuth = {userAuth}
-                    userProfile = {userProfile}
-                    editProfile = {editProfile}
-					toggleEdit = {this.toggleEdit}
-					targetInfo = {targetInfo}
-					heading = {heading}
-                />
+        <Comp 
+          userAuth = {userAuth}
+          userProfile = {userProfile}
+          editProfile = {editProfile}
+          toggleEdit = {this.toggleEdit}
+          targetInfo = {targetInfo}
+          heading = {heading}
+        />
 			)
 		}
   }

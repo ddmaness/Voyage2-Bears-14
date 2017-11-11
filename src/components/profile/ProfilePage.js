@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import './ProfilePage.css';
 import avatar from './profile-placeholder.png';
 
-import ProfileEdit from './profile-edit/ProfileEditContainer';
 import ProfileInfo from './profile-info/ProfileInfo';
 import ProfileProjects from './profile-projects/ProfileProjectsContainer';
 import NavFooter from '../shared/footer/NavFooterContainer'
@@ -74,22 +73,14 @@ export default class ProfilePage extends React.Component {
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="profile">
-            {!this.props.isEditing &&
-              <ProfileInfo 
-                userAuth={this.props.userAuth}
-                userProfile={this.props.userProfile}
-                switchEdit={this.props.switchEdit}
-              />
-            }
-            {this.props.isEditing &&
-              <ProfileEdit
-                isEditing={this.props.isEditing}
-                switchEdit={this.props.switchEdit}
-              />
-            }
+            <ProfileInfo 
+              userAuth={this.props.userAuth}
+              userProfile={this.props.userProfile}
+              switchEdit={this.props.switchEdit}
+            />
           </TabPane>
           <TabPane tabId="projects">
-            <ProfileProjects />
+            <ProfileProjects userAuth={this.props.userAuth} />
           </TabPane>
           <TabPane tabId="settings">
             <Row>
