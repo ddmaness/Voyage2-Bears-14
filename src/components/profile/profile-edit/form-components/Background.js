@@ -36,7 +36,7 @@ class EditBackground extends React.Component {
 					/>
 				</FormGroup>
 				<Button outline color = "primary" onClick={this.compileFormData}>Save Changes</Button>
-				<Button className = "cancel" onClick = {toggleEdit}>Cancel</Button>
+				<Button className = "cancel" outline color="danger" onClick = {toggleEdit}>Cancel</Button>
 			</Form>
 		)
 	}

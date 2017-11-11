@@ -33,7 +33,8 @@ class EditProfileArray extends React.Component {
 		// iterate through elements in the state array and display them as list items
 		let listItems = this.state[targetInfo].map((elem, index) => {
       return (
-        <ListItem
+				<ListItem
+					style = {index % 2 != 0 ? "odd-list-item" : "even-list-item"}
           item = {elem}
           key = {index}
           deleteListItem = {() => this.deleteListItem(this.state[targetInfo], targetInfo, index)}
@@ -66,7 +67,7 @@ class EditProfileArray extends React.Component {
 				{listItems}
 				</ul>
 				<Button className="list" outline color = "primary" onClick={this.compileFormData}>Save Changes</Button>
-				<Button className = "list cancel" onClick = {toggleEdit}>Cancel</Button>
+				<Button className = "list cancel" outline color="danger" onClick = {toggleEdit}>Cancel</Button>
 			</Form>
 		)
 	}

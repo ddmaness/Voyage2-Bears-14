@@ -32,3 +32,19 @@ Buttons
 .edit, .cancel {
   margin-left: 24px;
 }
+
+.remove-item-btn {
+  margin-right: 24px;
+}
+
+/*
+================================================
+
+List Items
+
+================================================
+*/
+
+.odd-list-item {
+  background-color: #e9ecef;
+}
