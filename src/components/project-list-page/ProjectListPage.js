@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from 'reactstrap';
 import './ProjectListPage.css';
 import ProjectCard from '../project-card/ProjectCard';
+import NavFooter from '../shared/footer/NavFooterContainer'
 
 export default class ProjectsListPage extends React.Component {
   constructor(props){
@@ -37,6 +38,7 @@ export default class ProjectsListPage extends React.Component {
         <div className="row">
           {pages}
         </div>
+        <NavFooter/>
       </Container>
     )
   }

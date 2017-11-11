@@ -12,6 +12,7 @@ import Login from './account/LoginContainer'
 import SignUp from './account/SignUpContainer';
 import HomePage from './home-page/HomePageContainer';
 import Header from './shared/header/HeaderContainer';
+import Footer from './shared/footer/Footer';
 import SignUpSuccess from './account/SignUpSuccessContainer';
 import ProfilePage from './profile/ProfilePageContainer';
 
@@ -42,6 +43,7 @@ export default function App(props) {
             <div className="loader">Loading...</div>
           </div>
         </div>
+        <Footer />
       </div>
     </Router>
   );
