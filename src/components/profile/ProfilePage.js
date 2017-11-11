@@ -30,66 +30,68 @@ export default class ProfilePage extends React.Component {
 
   render() {
     return(
-      <Container>
-        <Jumbotron>
-          <Row className="justify-content-center">
-            <h1>{this.props.userAuth.firstName} {this.props.userAuth.lastName}</h1>
-          </Row>
-          <Row className="justify-content-center">
-            <img src={avatar} alt="Avatar placeholder" />
-          </Row>
-        </Jumbotron>
-        <Nav tabs className="nav-justified">
-          <NavItem>
-            <NavLink
-              className={classnames({ active: this.state.activeTab === 'profile' })}
-              onClick={() => { this.toggle('profile'); }}
-              tag={Link}
-              to={`/${this.props.userAuth.username}/profile`}
-            >
-              Profile
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: this.state.activeTab === 'projects' })}
-              onClick={() => { this.toggle('projects'); }}
-              tag={Link}
-              to={`/${this.props.userAuth.username}/projects`}
-            >
-              Projects
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: this.state.activeTab === 'settings' })}
-              onClick={() => { this.toggle('settings'); }}
-              tag={Link}
-              to={`/${this.props.userAuth.username}/settings`}
-            >
-              Settings
-            </NavLink>
-          </NavItem>
-        </Nav>
-        <TabContent activeTab={this.state.activeTab}>
-          <TabPane tabId="profile">
-            <ProfileInfo 
-              userAuth={this.props.userAuth}
-              userProfile={this.props.userProfile}
-              switchEdit={this.props.switchEdit}
-            />
-          </TabPane>
-          <TabPane tabId="projects">
-            <ProfileProjects userAuth={this.props.userAuth} />
-          </TabPane>
-          <TabPane tabId="settings">
-            <Row>
-
+      <div>
+        <Container>
+          <Jumbotron>
+            <Row className="justify-content-center">
+              <h1>{this.props.userAuth.firstName} {this.props.userAuth.lastName}</h1>
             </Row>
-          </TabPane>
-        </TabContent>
+            <Row className="justify-content-center">
+              <img src={avatar} alt="Avatar placeholder" />
+            </Row>
+          </Jumbotron>
+          <Nav tabs className="nav-justified">
+            <NavItem>
+              <NavLink
+                className={classnames({ active: this.state.activeTab === 'profile' })}
+                onClick={() => { this.toggle('profile'); }}
+                tag={Link}
+                to={`/${this.props.userAuth.username}/profile`}
+              >
+                Profile
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                className={classnames({ active: this.state.activeTab === 'projects' })}
+                onClick={() => { this.toggle('projects'); }}
+                tag={Link}
+                to={`/${this.props.userAuth.username}/projects`}
+              >
+                Projects
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                className={classnames({ active: this.state.activeTab === 'settings' })}
+                onClick={() => { this.toggle('settings'); }}
+                tag={Link}
+                to={`/${this.props.userAuth.username}/settings`}
+              >
+                Settings
+              </NavLink>
+            </NavItem>
+          </Nav>
+          <TabContent activeTab={this.state.activeTab}>
+            <TabPane tabId="profile">
+              <ProfileInfo 
+                userAuth={this.props.userAuth}
+                userProfile={this.props.userProfile}
+                switchEdit={this.props.switchEdit}
+              />
+            </TabPane>
+            <TabPane tabId="projects">
+              <ProfileProjects userAuth={this.props.userAuth} />
+            </TabPane>
+            <TabPane tabId="settings">
+              <Row>
+
+              </Row>
+            </TabPane>
+          </TabContent>
+        </Container>
         <NavFooter/>
-      </Container>
+      </div>
     )
   }
 }

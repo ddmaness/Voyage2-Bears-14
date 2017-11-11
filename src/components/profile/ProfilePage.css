@@ -29,22 +29,42 @@ Buttons
   margin-bottom: 16px;
 }
 
-.edit, .cancel {
+.edit-btn, .cancel {
   margin-left: 24px;
 }
 
 .remove-item-btn {
+  position: relative;
   margin-right: 24px;
 }
 
-/*
-================================================
-
-List Items
-
-================================================
-*/
-
 .odd-list-item {
   background-color: #e9ecef;
+}
+
+svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.trash {
+  fill: #dc3545;
+  -webkit-transition: fill 0.15s ease-in-out;
+     -moz-transition: fill 0.15s ease-in-out;
+          transition: fill 0.15s ease-in-out
+}
+
+.remove-item-btn:hover .trash {
+  fill: white;
+}
+
+.edit {
+  fill: #007bff;;
+  -webkit-transition: fill 0.15s ease-in-out;
+     -moz-transition: fill 0.15s ease-in-out;
+          transition: fill 0.15s ease-in-out
+}
+
+.edit-btn:hover .edit {
+  fill: white;
 }

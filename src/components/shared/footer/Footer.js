@@ -4,9 +4,9 @@ import './Footer.css';
 
 export default function() {
   return(
-    <footer>
+    <footer className = "copyright">
       <Container className = "text-center">
-				<h6 className = "copyright">&copy; 2017, created by Bears-Team-14 as part of Chingu Voyage-2</h6>
+				<h6 className = "copyright-text">&copy; 2017, created by Bears-Team-14 as part of Chingu Voyage-2</h6>
 			</Container>
     </footer>
   )
