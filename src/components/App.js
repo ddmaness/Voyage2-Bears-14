@@ -27,7 +27,7 @@ export default function App(props) {
     <Router>
       <div className = "wrapper">
         <Header authentication={authentication} />
-        <section className="page-content container-fluid">
+        <div className="page-content container-fluid">
             <ErrorBox />
             <Switch>
               <Route exact path='/' component={HomePage} />
@@ -40,7 +40,7 @@ export default function App(props) {
               <Route exact path={`/${authentication.username}/:tabName`} component={ProfilePage} />
               <Route exact path={`/${authentication.username}/projects/new`} component={ProfileCreateProject} />
             </Switch>
-        </section>
+        </div>
         <div className="loader-wrapper" style={progress > 0 ? { display: 'block' } : { display: 'none' }}>
           <div className="loader-box">
             <div className="loader">Loading...</div>

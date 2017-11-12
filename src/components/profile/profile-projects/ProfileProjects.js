@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Table, Button } from 'reactstrap';
+import { Row, Table } from 'reactstrap';
 
 export default class ProfileProjects extends React.Component {
   render() {
@@ -23,14 +23,14 @@ export default class ProfileProjects extends React.Component {
             }
           </Row>
           <Row>
-            <Table>
+            <Table bordered>
               <thead>
                 <tr>
-                  <th>Project</th>
-                  <th>Team Size</th>
-                  <th>Status</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
+                  <th className="project-cell">Project</th>
+                  <th className="project-cell">Team Size</th>
+                  <th className="project-cell">Status</th>
+                  <th className="project-cell">Start Date</th>
+                  <th className="project-cell">End Date</th>
                 </tr>
               </thead>
               <tbody>
@@ -42,10 +42,10 @@ export default class ProfileProjects extends React.Component {
                           {project.name}
                         </Link>
                       </th>
-                      <td className="lead">{project.teamSize}</td>
-                      <td className="lead">{project.status}</td>
-                      <td className="lead">{project.startDate.slice(0,10)}</td>
-                      <td className="lead">{project.endDate.slice(0,10)}</td>
+                      <td className="project-cell">{project.teamSize}</td>
+                      <td className="project-cell">{project.status}</td>
+                      <td className="project-cell">{project.startDate.slice(0,10)}</td>
+                      <td className="project-cell">{project.endDate.slice(0,10)}</td>
                     </tr>
                   )
                 })}

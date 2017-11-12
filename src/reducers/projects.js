@@ -3,11 +3,16 @@ const initialState = {
   currentProject: '',
   userCreatedProjects: [],
   userMemberProjects: [],
+  createProjectSucceeded: false,
 }
 
 export default function reducer(state=initialState, action) {
 	switch (action.type) {
-    case 'PROJECT_CREATE_SUCCESS':
+    case 'PROJECT_CREATE_SUCCESS': {
+			const newState = Object.assign({}, state);
+      newState.createProjectSucceeded = true;
+			return newState;
+    }
     case 'PROJECT_CREATE_FAILURE': {
 			return state;
     }
