@@ -1,3 +1,10 @@
+/*
+================================================
+
+Layout
+
+================================================
+*/
 .profile-info-section {
   border-top: 1px solid rgba(200,200,200,.7);
 }
@@ -17,6 +24,34 @@
   align-items: center;
 }
 
+.isEditing {
+  padding: 24px 0;
+  border-top: 1px solid rgba(200,200,200,.7);
+}
+
+#background {
+  height: 128px;
+}
+
+/*
+================================================
+
+Fonts
+
+================================================
+*/
+
+.form-field-label {
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.profile-info-item {
+  line-height: 1.5;
+  color: #495057;
+  font-size: 18px;
+}
+
 /*
 ================================================
 
@@ -31,6 +66,10 @@ Buttons
 
 .edit-btn, .cancel {
   margin-left: 24px;
+}
+
+.list-confirm {
+  margin-left:56px;
 }
 
 .remove-item-btn {

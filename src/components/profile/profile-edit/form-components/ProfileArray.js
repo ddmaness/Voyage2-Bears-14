@@ -43,9 +43,9 @@ class EditProfileArray extends React.Component {
 		})
 
 		return (
-			<Form>
+			<Form className = "isEditing">
 				<FormGroup row>
-					<Label for={targetInfo}>{heading}</Label>
+					<Label className = "form-field-label" for={targetInfo}>{heading}</Label>
           <Input
             id={targetInfo}
             name={targetInfo}
@@ -66,8 +66,8 @@ class EditProfileArray extends React.Component {
 				<ul>
 				{listItems}
 				</ul>
-				<Button className="list" outline color = "primary" onClick={this.compileFormData}>Save Changes</Button>
-				<Button className = "list cancel" outline color="danger" onClick = {toggleEdit}>Cancel</Button>
+				<Button className="list-confirm list" outline color = "primary" onClick={this.compileFormData}>Save Changes</Button>
+				<Button className = "cancel list" outline color="danger" onClick = {toggleEdit}>Cancel</Button>
 			</Form>
 		)
 	}

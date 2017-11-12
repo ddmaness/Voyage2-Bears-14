@@ -22,9 +22,9 @@ class EditBackground extends React.Component {
   render(){
 		const { toggleEdit } = this.props;
 		return (
-			<Form>
+			<Form className = "isEditing">
 				<FormGroup row>
-					<Label for="background">Background</Label>
+					<Label className = "form-field-label" for="background">Background</Label>
 						<Input
 							id="background"
 							name="background"
