@@ -22,7 +22,7 @@ class EditBackground extends React.Component {
   render(){
 		const { toggleEdit, heading, description, userAuth, userProfile } = this.props;
 		return (
-			<Form>
+			<Form className = "isEditing">
         <FormGroup row className="justify-content-center">
           <Input
             id="skills"

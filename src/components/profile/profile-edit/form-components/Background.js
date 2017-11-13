@@ -22,9 +22,9 @@ class EditBackground extends React.Component {
   render(){
 		const { toggleEdit } = this.props;
 		return (
-			<Form>
+			<Form className = "isEditing">
 				<FormGroup row>
-					<Label for="background">Background</Label>
+					<Label className = "form-field-label" for="background">Background</Label>
 						<Input
 							id="background"
 							name="background"
@@ -36,7 +36,7 @@ class EditBackground extends React.Component {
 					/>
 				</FormGroup>
 				<Button outline color = "primary" onClick={this.compileFormData}>Save Changes</Button>
-				<Button className = "cancel" onClick = {toggleEdit}>Cancel</Button>
+				<Button className = "cancel" outline color="danger" onClick = {toggleEdit}>Cancel</Button>
 			</Form>
 		)
 	}

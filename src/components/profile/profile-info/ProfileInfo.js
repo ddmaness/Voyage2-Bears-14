@@ -5,6 +5,7 @@ import Background from '../profile-edit/form-components/Background';
 import ProfileArray from '../profile-edit/form-components/ProfileArray';
 import Timezone from '../profile-edit/form-components/Timezone';
 import InlineEdit from '../profile-edit/InlineProfileEditContainer'
+import ProgressBar from '../profile-edit/ProgressBar';
 
 export default class ProfileInfo extends React.Component {
   render() {
@@ -12,7 +13,8 @@ export default class ProfileInfo extends React.Component {
 
     return(
       <div>
-        <Row className="profile-info-section mt-5 justify-content-center">
+        <ProgressBar userProfile = {userProfile}/>
+        <Row className="mt-5 justify-content-center">
           <Row className="profile-info-header justify-content-center">
             <h3>
               General Info <small className="text-muted">Basic user details</small>
@@ -26,10 +28,10 @@ export default class ProfileInfo extends React.Component {
               <p className="profile-info-item">{userAuth.lastName}</p>
             }
             {userAuth.username &&
-              <p className="profile-info-item">{userAuth.username}</p>
+              <p className="profile-info-item">Username: {userAuth.username}</p>
             }
             {userAuth.email &&
-              <p className="profile-info-item">{userAuth.email}</p>
+              <p className="profile-info-item">Email: {userAuth.email}</p>
             }
           </Col>
         </Row>

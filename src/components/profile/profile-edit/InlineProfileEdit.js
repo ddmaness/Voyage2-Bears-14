@@ -1,7 +1,10 @@
 import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
 
+import Icon from '../../shared/icons/Icon';
 import { compileFormData, handleInputChange, handleKeyPress, formatArray } from '../../../utils/utilityFunctions';
+import { ICONS } from '../../shared/icons/icons';
+ 
 
 
 class EditProfile extends React.Component {
@@ -46,7 +49,9 @@ class EditProfile extends React.Component {
 						<h3>
 							{heading} <small className="text-muted">{description}</small>
 						</h3>
-						<Button outline color="primary" className = "edit" onClick = {this.toggleEdit}>Edit</Button>
+						<Button outline color="primary" className = "edit-btn" onClick = {this.toggleEdit}>
+						<Icon icon = {ICONS.EDIT} size={22} classProp = {'edit'}/>
+						</Button>
 					</Row>
 					<Col>
 						{userProfile[targetInfo] &&

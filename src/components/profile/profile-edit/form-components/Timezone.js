@@ -21,8 +21,9 @@ class EditTimezone extends React.Component {
 
   render(){
 		const { toggleEdit } = this.props;
-		return (
-			<Form>
+		return(
+      <Form className = "isEditing">
+        <Label className = "form-field-label" for="timezone">Timezone: GMT {this.state.timezone}</Label>
         <FormGroup row className="justify-content-center">
         {/* TODO selected value should be displayed in select box when virtual dom rerenders */}
             {/* Drop-down menu adapted from https://gist.github.com/jonathanforsythe/1065260 */}
@@ -40,7 +41,7 @@ class EditTimezone extends React.Component {
                 <option value="-3.0">(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
                 <option value="-2.0">(GMT -2:00) Mid-Atlantic</option>
                 <option value="-1.0">(GMT -1:00 hour) Azores, Cape Verde Islands</option>
-                <option value="0.0">(GMT) Western Europe Time, London, Lisbon, Casablanca</option>
+                <option value="0.0" selected>(GMT) Western Europe Time, London, Lisbon, Casablanca</option>
                 <option value="1.0">(GMT +1:00 hour) Brussels, Copenhagen, Madrid, Paris</option>
                 <option value="2.0">(GMT +2:00) Kaliningrad, South Africa</option>
                 <option value="3.0">(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg</option>
