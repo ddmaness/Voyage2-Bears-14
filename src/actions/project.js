@@ -8,6 +8,8 @@ export const deleteProjectFailure = error => ({ type: 'PROJECT_DELETE_FAILURE', 
 export const deleteProjectSuccess = json => ({ type: 'PROJECT_DELETE_SUCCESS', json });
 export const getProjectFailure = error => ({ type: 'PROJECT_GET_FAILURE', error });
 export const getProjectSuccess = json => ({ type: 'PROJECT_GET_SUCCESS', json });
+export const getProjectsFailure = error => ({ type: 'PROJECTS_GET_FAILURE', error });
+export const getProjectsSuccess = json => ({ type: 'PROJECTS_GET_SUCCESS', json });
 export const getProjectsListFailure = error => ({ type: 'PROJECT_GET_LIST_FAILURE', error });
 export const getProjectsListSuccess = json => ({ type: 'PROJECT_GET_LIST_SUCCESS', json });
 export const getProfileProjectsFailure = error => ({ type: 'PROJECT_GET_PROFILE_LIST_FAILURE', error });
@@ -51,6 +53,44 @@ export function createNewProject(projectData) {
     })
     .catch((error) => {
       dispatch(createProjectFailure(new Error(error)));
+    });
+    // turn off spinner
+    dispatch(decrementProgress());
+  }
+}
+
+export function fetchProjectsData() {
+  return async(dispatch) => {
+    // clear the error box if it's displayed
+    dispatch(clearError());
+    //turn on spinner
+    dispatch(incrementProgress());
+
+    // contact the API
+    await fetch(
+      // where to contact
+      `/api/projects`, 
+      // what to send
+      {
+        method: 'GET',
+        credentials: 'same-origin',
+      },
+    )
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      }
+      return null;
+    })
+    .then((json) => {
+      if (json) {
+        dispatch(getProjectsSuccess(json));
+      } else {
+        dispatch(getProjectsFailure(new Error('Failed To Retrieve Project Information')));
+      }
+    })
+    .catch((error) => {
+      dispatch(getProjectsFailure(new Error(error)));
     });
     // turn off spinner
     dispatch(decrementProgress());
