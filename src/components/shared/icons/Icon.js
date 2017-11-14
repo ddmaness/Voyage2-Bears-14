@@ -1,7 +1,5 @@
 import React from 'react';
 
-const {PropTypes} = React;
-
 const Icon = props => {
 
   return (

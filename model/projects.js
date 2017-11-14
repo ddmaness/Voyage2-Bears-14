@@ -8,6 +8,7 @@ const Schema = mongoose.Schema;
 const projectSchema = new Schema({
   name: String,
   creator: String,
+  creatorName: String,
   description: String,
   startDate: Date,
   endDate: Date,

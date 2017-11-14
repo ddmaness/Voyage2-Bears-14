@@ -10,6 +10,7 @@ export default class ProfileCreateProject extends React.Component {
       this.state = {
           name: '',
           creator: this.props.authentication.id,
+          creatorName: this.props.authentication.username,
           description: '',
           startDate: '',
           endDate: '',
@@ -19,6 +20,7 @@ export default class ProfileCreateProject extends React.Component {
           status:'',
           skillsRequired: '',
           languages:'',
+          githubUrl: 'http://www.github.com',
       };
 
       this.handleInputChange = this.handleInputChange.bind(this);
@@ -69,6 +71,19 @@ export default class ProfileCreateProject extends React.Component {
                           value={this.state.name}
                       />
                       <AvFeedback>Please enter a unique name for your project.</AvFeedback>
+                  </AvGroup>
+                  <AvGroup row>
+                  <Label for="githubUrl">Github Project URL</Label>
+                    <AvInput
+                        id="githubUrl"
+                        name="name"
+                        onChange={this.handleInputChange}
+                        onKeyPress={this.handleKeyPress}
+                        placeholder="www.github.com"
+                        type="url"
+                        value={this.state.githubUrl}
+                    />
+                    <AvFeedback>Enter a github repository for this project if you have one!</AvFeedback>
                   </AvGroup>
                   <AvGroup row>
                       <Label for="description">Description</Label>

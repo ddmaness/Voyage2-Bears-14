@@ -4,11 +4,6 @@ import '../ProfilePage.css'
 
 
 class EditBackground extends React.Component {
-  constructor(props) {
-		super(props);
-
-	}
-	
 	calculateProgress = profile => {
 		let progress = 0;
 		if (profile.background !== '') {

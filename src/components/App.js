@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom';
 
 import ErrorBox from './shared/error-box/ErrorBoxContainer'
-import ProjectPage from './project-page/ProjectPage';
-import ProjectListPage from './project-list-page/ProjectListPage';
+import ProjectPage from './project-page/ProjectPageContainer';
+import ProjectListPage from './project-list-page/ProjectListPageContainer';
 import Login from './account/LoginContainer'
 import SignUp from './account/SignUpContainer';
 import HomePage from './home-page/HomePageContainer';
@@ -32,7 +32,7 @@ export default function App(props) {
             <Switch>
               <Route exact path='/' component={HomePage} />
               <Route exact path='/projects' component={ProjectListPage} />
-              <Route path='/projects/:projectName' component={ProjectPage} />
+              <Route path='/projects/:projectId' component={ProjectPage} />
               <Route exact path='/sign-up' component={SignUp} />
               <Route exact path='/login' component={Login} />
               <Route exact path='/sign-up-success' component={SignUpSuccess} />

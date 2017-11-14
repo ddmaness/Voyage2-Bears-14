@@ -34,7 +34,7 @@ class EditProfileArray extends React.Component {
 		let listItems = this.state[targetInfo].map((elem, index) => {
       return (
 				<ListItem
-					style = {index % 2 != 0 ? "odd-list-item" : "even-list-item"}
+					style = {index % 2 !== 0 ? "odd-list-item" : "even-list-item"}
           item = {elem}
           key = {index}
           deleteListItem = {() => this.deleteListItem(this.state[targetInfo], targetInfo, index)}

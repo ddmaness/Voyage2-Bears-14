@@ -5,3 +5,7 @@
 .card-img {
     cursor: pointer;
 }
+
+.repo-link {
+  color: black;
+}

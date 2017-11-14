@@ -25,25 +25,7 @@
   text-transform: uppercase;
 }
 
-.expectation-date{
+.start-date{
   color:#26b999;
   font-weight:700;
-}
-.expectation-date-to-apply{
-  max-width: 22ch;
-  display: inline-block;
-  text-transform: uppercase;
-  float: left;
-}
-
-.pull-right{
-  color:#9b9b9b;
-}
-
-.pull-right:hover{
-  color:#080808;
-}
-
-.pull-right:hover i{
-  color:#26b999;
 }
