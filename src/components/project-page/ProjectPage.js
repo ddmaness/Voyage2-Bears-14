@@ -6,6 +6,53 @@ import './project-page.css';
 import projectPic from './project-placeholder.jpg';
 
 export default class ProjectPage extends React.Component{
+  constructor(props) {
+    super(props);
+
+    this.addTeamMember = this.addTeamMember.bind(this);
+    this.removeTeamMember = this.removeTeamMember.bind(this);
+    this.state = {
+      teamMembers: [],
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.project.team === undefined) {
+      this.setState({
+        teamMembers: [],
+      })
+    } else {
+      this.setState({
+        teamMembers: this.props.project.team,
+      })
+    }
+  }
+
+  addTeamMember() {
+    const { updateProject } = this.props;
+    const { _id, team, teamSize } = this.props.project;
+    const { isLoggedIn, id } = this.props.authentication;
+    if (team.length < teamSize) {
+      this.setState({
+        teamMembers: this.state.teamMembers.concat([id])
+      }, function() {
+        updateProject(_id, {team: this.state.teamMembers})
+      });
+    }
+  }
+
+  removeTeamMember() {
+    const { updateProject } = this.props;
+    const { _id, team, teamSize } = this.props.project;
+    const { isLoggedIn, id } = this.props.authentication;
+    const userIndex = this.state.teamMembers.indexOf(id);
+    this.setState({
+      teamMembers: this.state.teamMembers.filter((s, sindex) => userIndex !== sindex),
+    }, function() {
+      updateProject(_id, {team: this.state.teamMembers});
+    });
+  }
+
   render() {
     const { 
       authentication,
@@ -19,8 +66,8 @@ export default class ProjectPage extends React.Component{
       <Row className="justify-content-center">
         <Row className="py-3 col-10">
           <Col sm="3">
-            <div>
-              <img src={projectPic} alt="Placeholder" className="project-image" />
+            <div className="text-center">
+              <img src={projectPic} alt="Placeholder" className="img-fluid rounded" />
             </div>
           </Col>
           <Col sm="7" className="d-flex flex-column justify-content-center">
@@ -41,15 +88,15 @@ export default class ProjectPage extends React.Component{
                 Edit
               </Button>
             }
-            {userMemberProjects.indexOf(project._id) >= 0 &&
-              <Button>
+            {authentication.isLoggedIn && project.team && project.team.indexOf(authentication.id) !== -1 &&
+              <Button onClick={() => this.removeTeamMember()}>
                 Leave Team
               </Button>
             }
-            {userMemberProjects.indexOf(project._id) < 0 &&
+            {authentication.isLoggedIn && project.team && project.team.indexOf(authentication.id) === -1 &&
               authentication.isLoggedIn  &&
               authentication.id !== project.creator &&
-              <Button>
+              <Button onClick={() => this.addTeamMember()}>
                 Join
               </Button>
             }

@@ -19,6 +19,7 @@ export default function reducer(state=initialState, action) {
     case 'PROJECT_UPDATE_SUCCESS': {
 			const newState = Object.assign({}, state);
       newState.updateProjectSucceeded = true;
+      newState.openProject = action.json;
 			return newState;
     }
     case 'PROJECT_CREATE_FAILURE':

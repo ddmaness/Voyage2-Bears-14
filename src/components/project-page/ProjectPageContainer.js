@@ -7,21 +7,21 @@ import ProjectPage from './ProjectPage';
 import { getProject, updateProject, switchProjectEditMode } from '../../actions/projects';
 
 export class ProjectPageContainer extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      project: {},
-    }
-  }
-
   componentDidMount() {
     const { getProject } = this.props;
     getProject(this.props.match.params.projectId);
   }
 
   render() {
-    const { authentication, userMemberProjects, isEditingProject, project, switchProjectEditMode } = this.props;
+    const { 
+      authentication,
+      userMemberProjects,
+      isEditingProject,
+      project,
+      switchProjectEditMode,
+      updateProject,
+      updateProjectSucceeded,
+    } = this.props;
 
     return(
       <ProjectPage 
@@ -30,6 +30,8 @@ export class ProjectPageContainer extends React.Component {
         isEditingProject={isEditingProject}
         switchEdit={switchProjectEditMode}
         userMemberProjects={userMemberProjects}
+        updateProject={updateProject}
+        updateProjectSucceeded={updateProjectSucceeded}
       />
     );
   }
@@ -38,7 +40,7 @@ export class ProjectPageContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     authentication: state.authentication,
-    userCreatedProjects: state.projects.userCreatedProjects,
+    updateProjectSucceeded: state.projects.updateProjectSucceeded,
     userMemberProjects: state.projects.userMemberProjects,
     isEditingProject: state.projects.isEditingProject,
     project: state.projects.openProject,

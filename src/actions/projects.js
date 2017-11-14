@@ -47,11 +47,11 @@ export function createNewProject(projectData) {
       }
       return null;
     })
-    .then((json) => {
+    .then(async (json) => {
       if (json) {
-        dispatch(createProjectSuccess(json));
+        await dispatch(createProjectSuccess(json));
       } else {
-        dispatch(createProjectFailure(new Error('Failed To Create Project')));
+        await dispatch(createProjectFailure(new Error('Failed To Create Project')));
       }
     })
     .catch((error) => {
@@ -230,14 +230,14 @@ export function updateProject(projectId, newData) {
     // contact the API
     await fetch(
       // where to contact
-      '/api/projects/:projectId', 
+      `/api/projects/${projectId}`, 
       // what to send
       {
         method: 'PUT',
         body: JSON.stringify(newData),
         headers: {
           'Content-Type': 'application/json',
-      },
+        },
         credentials: 'same-origin',
       },
     )
@@ -247,11 +247,11 @@ export function updateProject(projectId, newData) {
       }
       return null;
     })
-    .then((json) => {
+    .then(async (json) => {
       if (json) {
-        dispatch(updateProjectSuccess(json));
+        await dispatch(updateProjectSuccess(json));
       } else {
-        dispatch(updateProjectFailure(new Error('Failed To Create Project')));
+        await dispatch(updateProjectFailure(new Error('Failed To Create Project')));
       }
     })
     .catch((error) => {

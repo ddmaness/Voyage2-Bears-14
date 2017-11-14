@@ -63,6 +63,8 @@ router.route('/:project_id')
   .put( function(req, res) {
       let id = req.params.project_id;
 
+      console.log(req.body);
+
       Project.findById(id, function(err, project) {
           //handle error
           if (err)
@@ -75,11 +77,12 @@ router.route('/:project_id')
               });
 
           // else update the project
-          project.update(req.body, function(err) {
+          project.set(req.body);
+          project.save(function(err, updatedProject) {
               if (err)
                   res.send(err);
 
-              res.json({ message: 'Project updated' });
+              res.send(updatedProject);
           });
 
       });
