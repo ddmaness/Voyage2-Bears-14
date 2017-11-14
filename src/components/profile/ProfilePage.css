@@ -81,6 +81,14 @@ Fonts
   color: #17a2b8; 
 }
 
+.invalid-alert{
+  font-weight: 400;
+  line-height: 1.5;
+  margin-top: .25rem;
+  font-size: .875rem;
+  color: #dc3545;
+}
+
 /*
 ================================================
 
@@ -135,4 +143,19 @@ svg {
 
 .edit-btn:hover .edit {
   fill: white;
+}
+
+/*
+================================================
+
+Project Alerts
+
+================================================
+*/
+
+.languages-alert, .skills-alert {
+  display:none;
+  margin-top: .25rem;
+  font-size: .875rem;
+  color: #dc3545;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Button, Input } from 'reactstrap';
+import { Form, FormGroup, Button, Input, Label } from 'reactstrap';
 
 import { compileFormData, handleInputChange, handleKeyPress } from '../../../../utils/utilityFunctions';
 

@@ -29,7 +29,6 @@ class EditProfileArray extends React.Component {
 	  const { currentInput } = this.state;
 		const { toggleEdit, heading, targetInfo, placeholder } = this.props;
 
-    console.log(this.state[targetInfo]);
 		// iterate through elements in the state array and display them as list items
 		let listItems = this.state[targetInfo].map((elem, index) => {
       return (
