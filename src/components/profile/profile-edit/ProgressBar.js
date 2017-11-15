@@ -4,14 +4,9 @@ import '../ProfilePage.css'
 
 
 class EditBackground extends React.Component {
-  constructor(props) {
-		super(props);
-
-	}
-	
 	calculateProgress = profile => {
 		let progress = 0;
-		if (profile.background !== '') {
+		if (profile.background !== '' && profile.background !== undefined) {
 			progress += 25;
 		}
 		if (profile.skills.length !== 0) {
@@ -20,7 +15,7 @@ class EditBackground extends React.Component {
 		if (profile.languages.length !== 0) {
 			progress += 25;
 		}
-		if (profile.timezone !== '') {
+		if (profile.timezone !== '' && profile.timezone !== undefined) {
 			progress += 25;
 		}
 		return progress

@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 
 import ProfilePage from './ProfilePage';
 
-export class ProfilePageContainer extends React.Component {
+class ProfilePageContainer extends React.Component {
   constructor(props) {
     super(props);
 

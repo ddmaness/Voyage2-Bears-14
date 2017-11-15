@@ -13,6 +13,7 @@ export default class ProfileCreateProject extends React.Component {
     this.state = {
 			name: '',
 			creator: this.props.authentication.id,
+      creatorName: this.props.authentication.username,
 			description: '',
 			startDate: '',
 			endDate: '',
@@ -24,6 +25,7 @@ export default class ProfileCreateProject extends React.Component {
 			languages:[],
 			currentInputSkills:'',
 			currentInputLanguages:'',
+      githubUrl: 'http://www.github.com',
 	  };
 	  
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -149,71 +151,84 @@ export default class ProfileCreateProject extends React.Component {
               <AvFeedback>Please enter a unique name for your project.</AvFeedback>
             </AvGroup>
             <AvGroup row>
+              <Label for="githubUrl">Github Project URL</Label>
+              <AvInput
+                id="githubUrl"
+                name="name"
+                onChange={this.handleInputChange}
+                onKeyPress={this.handleKeyPress}
+                placeholder="www.github.com"
+                type="url"
+                value={this.state.githubUrl}
+              />
+              <AvFeedback>Enter a github repository for this project if you have one!</AvFeedback>
+            </AvGroup>
+            <AvGroup row>
               <Label for="description">Description</Label>
               <AvInput
-							id="description"
-							maxLength="500"
-							name="description"
-							onChange={this.handleInputChange}
-							onKeyPress={this.handleKeyPress}
-							placeholder="A brief description of your project (max 500 character)."
-							required
-							type="textarea"
-							value={this.state.description}
+                id="description"
+                maxLength="500"
+                name="description"
+                onChange={this.handleInputChange}
+                onKeyPress={this.handleKeyPress}
+                placeholder="A brief description of your project (max 500 character)."
+                required
+                type="textarea"
+                value={this.state.description}
               />
               <AvFeedback>Please input a short description of your project. You can update this later.</AvFeedback>
             </AvGroup>
             <AvGroup row>
               <Label for="startDate">Estimated Project Start Date</Label>
-                <AvInput
-								id="startDate"
-								name="startDate"
-								onChange={this.handleInputChange}
-								placeholder="date placeholder"
-								required
-								type="date"
-								value={this.state.startDate}
-								/>
-								<AvFeedback>Please choose a start date for your project</AvFeedback>
+              <AvInput
+                id="startDate"
+                name="startDate"
+                onChange={this.handleInputChange}
+                placeholder="date placeholder"
+                required
+                type="date"
+                value={this.state.startDate}
+              />
+              <AvFeedback>Please choose a start date for your project</AvFeedback>
 						</AvGroup>
 						<AvGroup row>
-								<Label for="endDate">Estimated Project End Date</Label>
-								<AvInput
-								id="endDate"
-								name="endDate"
-								onChange={this.handleInputChange}
-								placeholder="date placeholder"
-								required
-								type="date"
-								value={this.state.endDate}
-								/>
-								<AvFeedback>Please choose an end date for your project.</AvFeedback>
+              <Label for="endDate">Estimated Project End Date</Label>
+              <AvInput
+                id="endDate"
+                name="endDate"
+                onChange={this.handleInputChange}
+                placeholder="date placeholder"
+                required
+                type="date"
+                value={this.state.endDate}
+              />
+              <AvFeedback>Please choose an end date for your project.</AvFeedback>
 						</AvGroup>
 						<AvGroup row>
-								<Label for="teamSize">Team Size</Label>
-								<AvInput
-								id="teamSize"
-								name="teamSize"
-								onChange={this.handleInputChange}
-								onKeyPress={this.handleKeyPress}
-								placeholder="4"
-								required
-								type="number"
-								value={this.state.teamSize}
-								/>
-								<AvFeedback>Please input a number corresponding to the total number of team members you would like to have on the team.</AvFeedback>
+              <Label for="teamSize">Team Size</Label>
+              <AvInput
+                id="teamSize"
+                name="teamSize"
+                onChange={this.handleInputChange}
+                onKeyPress={this.handleKeyPress}
+                placeholder="4"
+                required
+                type="number"
+                value={this.state.teamSize}
+              />
+              <AvFeedback>Please input a number corresponding to the total number of team members you would like to have on the team.</AvFeedback>
 						</AvGroup>
 						<AvGroup row>
 							<Label for="difficultyLevel">Difficulty Level</Label>
 							<AvField
-							id="difficultyLevel"
-							name="difficultyLevel"
-							onChange={this.handleInputChange}
-							placeholder="Easy"
-							required
-							type="select"
-							helpMessage="Select a difficulty level for the project."
-							value={this.state.teamSize}
+                id="difficultyLevel"
+                name="difficultyLevel"
+                onChange={this.handleInputChange}
+                placeholder="Easy"
+                required
+                type="select"
+                helpMessage="Select a difficulty level for the project."
+                value={this.state.teamSize}
 							>
 								<option>Easy</option>
 								<option>Intermediate</option>
@@ -223,14 +238,14 @@ export default class ProfileCreateProject extends React.Component {
 						<AvGroup row>
 							<Label for="timeZone">Project Timezone</Label>
 							<AvField
-							id="timeZone"
-							name="timeZone"
-							onChange={this.handleInputChange}
-							placeholder="(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima"
-							required
-							type="select"
-							helpMessage="Select a primary time zone for the project."
-							value={this.state.timeZone}
+                id="timeZone"
+                name="timeZone"
+                onChange={this.handleInputChange}
+                placeholder="(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima"
+                required
+                type="select"
+                helpMessage="Select a primary time zone for the project."
+                value={this.state.timeZone}
 							>
 								<option value="-12.0">(GMT -12:00) Eniwetok, Kwajalein</option>
 								<option value="-11.0">(GMT -11:00) Midway Island, Samoa</option>
@@ -295,11 +310,11 @@ export default class ProfileCreateProject extends React.Component {
 						</AvGroup>
 						<p className = "languages-alert">please provide the language(s) that team members use to communicate</p> 
             <Button 
-						className = "list" 
-						outline color = "primary" 
-						onClick= {(e) => this.pushToArray(currentInputLanguages, "currentInputLanguages", languages, "languages", e)}
+              className = "list" 
+              outline color = "primary" 
+              onClick= {(e) => this.pushToArray(currentInputLanguages, "currentInputLanguages", languages, "languages", e)}
 						>
-						Add
+						  Add
 						</Button>
 						<br/>
 						<ul>
@@ -307,27 +322,27 @@ export default class ProfileCreateProject extends React.Component {
 						</ul>
 						<AvGroup row>
 							<Label className = "skills-label" for="skillsRequired">Project Skills</Label>
-								<AvInput
-								id="skillsRequired"
-								name="skillsRequired"
-								onChange={(e) => this.arrayHandleInputChange("currentInputSkills", e)}
-								onKeyPress={(e) => this.arrayHandleKeyPress(currentInputSkills, "currentInputSkills", skillsRequired, "skillsRequired", e)}
-								onClick={(e) => this.clearAlert('skills', e)}
-								placeholder="CSS, JavaScript"
-								value={currentInputSkills}
-								/>
+              <AvInput
+                id="skillsRequired"
+                name="skillsRequired"
+                onChange={(e) => this.arrayHandleInputChange("currentInputSkills", e)}
+                onKeyPress={(e) => this.arrayHandleKeyPress(currentInputSkills, "currentInputSkills", skillsRequired, "skillsRequired", e)}
+                onClick={(e) => this.clearAlert('skills', e)}
+                placeholder="CSS, JavaScript"
+                value={currentInputSkills}
+              />
 						</AvGroup>
 						<p className = "skills-alert">please provide at least one skill that the project will require</p>
 						<Button 
-						className = "list" 
-					  outline color = "primary" 
-					  onClick= {(e) => this.pushToArray(currentInputSkills, "currentInputSkills", skillsRequired, "skillsRequired", e)}
+              className = "list" 
+              outline color = "primary" 
+              onClick= {(e) => this.pushToArray(currentInputSkills, "currentInputSkills", skillsRequired, "skillsRequired", e)}
 					  >
-						Add
+						  Add
 					  </Button>
 						<br/>
 						<ul>
-						{skillItems}
+						  {skillItems}
 						</ul>
 					
 						<div className="row justify-content-center">
@@ -335,7 +350,7 @@ export default class ProfileCreateProject extends React.Component {
 							<Button tag={Link} to={`/${authentication.username}/projects`} outline color="danger" size="lg" className="ml-3">Cancel</Button>
 						</div>
           </AvForm>
-          </div>
+        </div>
       </div>
     );
   }

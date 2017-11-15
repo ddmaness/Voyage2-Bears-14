@@ -5,23 +5,17 @@ import ProjectCard from '../project-card/ProjectCard';
 import NavFooter from '../shared/footer/NavFooterContainer'
 
 export default class ProjectsListPage extends React.Component {
-  constructor(props){
-      super(props);
-      
-      this.state={
-        postedProjects:['example1','example2','example3','example4','example5','example6']
-      }
-    }
-
   render() {
-    const pages = this.state.postedProjects.map((project,i)=>{
+    const { projectsList } = this.props;
+
+    const projects = projectsList.map(project => {
       return(
-        <ProjectCard key={i} id={i} history={this.props.history}/>
+        <ProjectCard key={project._id} project={project}/>
       )
     })
 
     return(
-      <div>
+      <div className="pt-4">
         <Container>
           <div className="d-flex flex-row justify-content-center pt-5">
             <h1 id='explore-projects'>Explore Projects</h1>
@@ -37,7 +31,7 @@ export default class ProjectsListPage extends React.Component {
             </form>
           </div>
           <div className="row">
-            {pages}
+            {projects}
           </div>
         </Container>
         <NavFooter/>

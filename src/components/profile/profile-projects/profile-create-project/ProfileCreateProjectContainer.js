@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { createNewProject } from '../../../../actions/project';
+import { createNewProject } from '../../../../actions/projects';
 
 import ProfileCreateProject from './ProfileCreateProject';
 

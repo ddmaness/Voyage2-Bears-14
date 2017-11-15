@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import AuthenticationReducer from '../reducers/authentication';
-import EditProfileReducer from '../reducers/profile';
-import ErrorReducer from '../reducers/error';
-import ProgressReducer from '../reducers/progress';
-import ProjectsReducer from '../reducers/projects';
+import AuthenticationReducer from './authentication';
+import EditProfileReducer from './profile';
+import ErrorReducer from './error';
+import ProgressReducer from './progress';
+import ProjectsReducer from './projects';
 
 const reducers = {
   authentication: AuthenticationReducer,

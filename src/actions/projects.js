@@ -12,9 +12,12 @@ export const getProjectsFailure = error => ({ type: 'PROJECTS_GET_FAILURE', erro
 export const getProjectsSuccess = json => ({ type: 'PROJECTS_GET_SUCCESS', json });
 export const getProjectsListFailure = error => ({ type: 'PROJECT_GET_LIST_FAILURE', error });
 export const getProjectsListSuccess = json => ({ type: 'PROJECT_GET_LIST_SUCCESS', json });
+export const updateProjectFailure = error => ({ type: 'PROJECT_UPDATE_FAILURE', error });
+export const updateProjectSuccess = json => ({ type: 'PROJECT_UPDATE_SUCCESS', json });
 export const getProfileProjectsFailure = error => ({ type: 'PROJECT_GET_PROFILE_LIST_FAILURE', error });
 export const getProfileProjectsSuccessCreator = json => ({ type: 'PROJECT_GET_PROFILE_LIST_SUCCESS_CREATOR', json });
 export const getProfileProjectsSuccessMember = json => ({ type: 'PROJECT_GET_PROFILE_LIST_SUCCESS_MEMBER', json });
+export const switchProjectEditMode = () => ({ type: 'PROJECT_SWITCH_EDIT_MODE' });
 
 
 export function createNewProject(projectData) {
@@ -44,11 +47,11 @@ export function createNewProject(projectData) {
       }
       return null;
     })
-    .then((json) => {
+    .then(async (json) => {
       if (json) {
-        dispatch(createProjectSuccess(json));
+        await dispatch(createProjectSuccess(json));
       } else {
-        dispatch(createProjectFailure(new Error('Failed To Create Project')));
+        await dispatch(createProjectFailure(new Error('Failed To Create Project')));
       }
     })
     .catch((error) => {
@@ -86,7 +89,7 @@ export function fetchProjectsData() {
       if (json) {
         dispatch(getProjectsSuccess(json));
       } else {
-        dispatch(getProjectsFailure(new Error('Failed To Retrieve Project Information')));
+        dispatch(getProjectsFailure(new Error('Failed To Retrieve Projects')));
       }
     })
     .catch((error) => {
@@ -211,6 +214,48 @@ export function getProfileProjects(userId, role) {
     })
     .catch((error) => {
       dispatch(getProfileProjectsFailure(new Error(error)));
+    });
+    // turn off spinner
+    dispatch(decrementProgress());
+  }
+}
+
+export function updateProject(projectId, newData) {
+  return async(dispatch) => {
+    // clear the error box if it's displayed
+    dispatch(clearError());
+    //turn on spinner
+    dispatch(incrementProgress());
+
+    // contact the API
+    await fetch(
+      // where to contact
+      `/api/projects/${projectId}`, 
+      // what to send
+      {
+        method: 'PUT',
+        body: JSON.stringify(newData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'same-origin',
+      },
+    )
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      }
+      return null;
+    })
+    .then(async (json) => {
+      if (json) {
+        await dispatch(updateProjectSuccess(json));
+      } else {
+        await dispatch(updateProjectFailure(new Error('Failed To Create Project')));
+      }
+    })
+    .catch((error) => {
+      dispatch(updateProjectFailure(new Error(error)));
     });
     // turn off spinner
     dispatch(decrementProgress());

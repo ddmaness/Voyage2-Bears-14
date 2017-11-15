@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import ProfileProjects from './ProfileProjects';
-import { getProfileProjects } from '../../../actions/project';
+import { getProfileProjects } from '../../../actions/projects';
 
 export class ProfileProjectsContainer extends React.Component {
   componentDidMount() {

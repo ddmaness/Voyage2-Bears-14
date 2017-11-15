@@ -38,7 +38,7 @@ export default class ProfileProjects extends React.Component {
                   return(
                     <tr key={i}>
                       <th>
-                        <Link to={`/projects/${project.name}`}>
+                        <Link to={`/projects/${project._id}`}>
                           {project.name}
                         </Link>
                       </th>
