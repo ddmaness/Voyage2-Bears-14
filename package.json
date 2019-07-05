@@ -7,7 +7,7 @@
     "body-parser": "^1.18.2",
     "express": "^4.15.5",
     "foreman": "^2.0.0",
-    "marked": "^0.3.6",
+    "marked": "^0.4.0",
     "mongoose": "^4.11.13",
     "nodemon": "^1.12.1",
     "react": "^16.0.0",
